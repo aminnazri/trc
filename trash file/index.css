@@ -1,0 +1,125 @@
+@import url(' https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none; 
+    list-style: none; 
+}
+
+body{
+    min-height: 100vh;
+    background: #c8d0dd;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigation{
+    position: fixed;
+    top: 0px;
+    Left: 0px;
+    bottom: 0px;
+    /* width: 300px; */
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    /* align-items: center; */
+    /* background: white;  */
+    width: 15%;
+}
+
+.navigation ul{
+
+    width: 100%;
+    padding-left: 5px;
+    padding-top: 40px;
+
+}
+
+.navigation ul li
+{
+    position: relative;
+    List-style: none;
+    width: 100%;
+    display: flex;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    /* transition:  0.5s; */
+}
+
+.navigation ul li.active{
+    background: white;
+}
+
+.navigation ul li.active a{
+    color: #333;
+}
+
+.navigation ul li a{
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.navigation ul li a .icon{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 70px;
+    text-align: center;
+}
+
+.navigation ul li a .icon ion-icon{
+    font-size: 1.5em;
+}
+
+.navigation ul li a .title{
+    position: relative;
+    display: block;
+    padding-left: 10px;
+    height: 60px;
+    Line-height: 60px;
+    white-space: normal;
+}
+
+.main{
+    /* position: fixed; */
+    /* position: fixed; */
+    top: 0px;
+    Left: 0px;
+    bottom: 0px;
+
+    width: 100vh;
+    width: 85%;
+
+}
+
+.column {
+    /* position: fixed; */
+    float: left;
+    padding-top:10px ;
+    /* padding-right: 10px; */
+}
+
+.main .header {
+    margin: 10px 0;
+}
+
+.header .logo h3{
+    /* position: fixed; */
+    font-weight:bold;
+    color: rgb(112, 111, 111);
+}
+
+.content{
+    background: white;
+    min-height: 92vh;
+    border-radius:15px 0 0 0 ;
+}

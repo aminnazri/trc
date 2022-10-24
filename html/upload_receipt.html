@@ -1,0 +1,104 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	<link rel="stylesheet"  href ='../css/upload_receipt.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+</head>
+<body>
+    <div id="drop-area">
+        <form class="my-form">
+          <input type="file" id="fileElem"  accept="image/*" onchange="handleFiles(this.files)">
+          <label class="button" for="fileElem">Select some files</label>
+          <div class="icon" id="a"><i class="fas fa-cloud-upload-alt" ></i></div>
+        </form>
+        <progress id="progress-bar" max=100 value=0></progress>
+        <div id="gallery" ></div>
+    </div>
+    
+    <div class="drag-area w-100">
+        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+        <header>Drag & Drop to Upload File</header>
+        <span>OR</span>
+        <button>Browse File</button>
+        <input type="file" hidden>
+    </div>
+    
+    
+    
+      <script src="../js/upload_receipt.js"></script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <style>
+      .upload-container {
+        position: relative;
+      }
+      .upload-container input {
+        border: 1px solid #92b0b3;
+        background: #f1f1f1;
+        outline: 2px dashed #92b0b3;
+        outline-offset: -10px;
+        padding: 100px 0px 100px 250px;
+        text-align: center !important;
+        width: 500px;
+      }
+      .upload-container input:hover {
+        background: #ddd;
+      }
+      .upload-container:before {
+        position: absolute;
+        bottom: 50px;
+        left: 245px;
+        content: " (or) Drag and Drop files here. ";
+        color: #3f8188;
+        font-weight: 900;
+      }
+      .upload-btn {
+        margin-left: 300px;
+        padding: 7px 20px;
+      }
+    </style>
+    <script>
+      function uploadFiles() {
+        var files = document.getElementById('file_upload').files;
+        if(files.length==0){
+          alert("Please first choose or drop any file(s)...");
+          return;
+        }
+        let filenames="";
+        for(var i=0;i<files.length;i++){
+          filenames+=files[i].name+"\n";
+          document.getElementById("output").innerHTML = filenames;
+        }
+        alert("Selected file(s) :\n____________________\n"+filenames);
+      }
+
+      
+    </script>
+  </head>
+  <body>
+    <div class="upload-container">
+      <input type="file" id="file_upload" accept="image/*" />
+      <div id="file-upload-filename"></div>
+      <div class="output" id="output">f</div>
+
+    </div>
+    <br>
+    <button class="upload-btn" onclick="uploadFiles()">Submit
+    </button>	
+  </body>
+</html>
