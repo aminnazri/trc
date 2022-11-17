@@ -37,7 +37,7 @@
 
     define('SMTP_PASSWORD', 'maktabmahmud');
 
-    define('SMTP_FROM', 'aminnazri008@gmail.com');
+    define('SMTP_FROM', 'admin@trc.com');
 
     define('SMTP_FROM_NAME', 'admin');
 

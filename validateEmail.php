@@ -26,7 +26,7 @@
 								echo '<h2>Email Verified</h2>';
 								echo "<script>
 								setTimeout(function(){
-								   window.location.href = 'http://localhost/SecureAuthSystem-main/login';
+								   window.location.href = 'http://trc.test/login';
 								}, 2000);
 							 </script>";
 							}

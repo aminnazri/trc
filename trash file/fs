@@ -1,0 +1,137 @@
+
+
+<?php
+session_start();
+// $user_id = $_SESSION['user_id'];
+$dbHost     = "localhost";
+$dbUsername = "root";
+$dbPassword = "";
+$dbName     = "tax_receipt_keeper";
+
+// Create database connection
+$db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
+$user_id = $_SESSION['userID'];
+
+
+// Check connection
+if ($db->connect_error) {
+    die("Connection failed: " . $db->connect_error);
+}
+if(isset($_POST['submit']))
+{
+    $fileName = $_FILES['file']['name'];
+    $fileTmpName = $_FILES['file']['tmp_name'];
+    $fileSize = $_FILES['file']['size'];
+    $fileError = $_FILES['file']['error'];
+    $fileType = $_FILES['file']['type'];
+
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+    $allowed = array('jpg', 'jpeg', 'png');
+
+    $tittle = $_POST['tittle'];
+    $tax_type = $_POST['tax_type'];
+    $description = $_POST['description'];
+    $receipt_date = $_POST['receipt_date'];
+    // $user_id = $_SESSION['userID'];
+    
+    echo $user_id;
+
+    if (in_array($fileActualExt, $allowed)) {
+        if ($fileError===0) {
+            if ($fileSize < 1000000) {
+                $fileNameNew = uniqid('', true).".".$fileActualExt;
+                $fileDestination = '../image_uploads/'.$fileNameNew;
+                move_uploaded_file($fileTmpName, $fileDestination);
+                // Insert image file name into database
+                $insert = $db->query("INSERT into images (tittle,tax_type,description,file_name, receipt_date,uploaded_on,user_id) VALUES ('$tittle','$tax_type','$description','$fileNameNew', '$receipt_date', NOW(), '$user_id')");
+                if($insert){
+                    $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
+                    
+                    // echo '<script type="text/javascript">  { alert("File uploaded"); } </script>';
+                }else{
+                    $statusMsg = "File upload failed, please try again.";
+            } 
+            }
+            else {
+                echo "your file is too big";
+            }
+        }
+        else {
+            echo "There was an error uploading your file";
+        }
+    }
+    else {
+        echo "you cannot upload files of this type!";
+    }
+    
+}
+?>
+
+<?php
+session_start();
+// $user_id = $_SESSION['user_id'];
+$dbHost     = "localhost";
+$dbUsername = "root";
+$dbPassword = "";
+$dbName     = "tax_receipt_keeper";
+
+// Create database connection
+$db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
+$user_id = $_SESSION['userID'];
+
+
+// Check connection
+if ($db->connect_error) {
+    die("Connection failed: " . $db->connect_error);
+}
+if(isset($_POST['submit']))
+{
+    $fileName = $_FILES['file']['name'];
+    $fileTmpName = $_FILES['file']['tmp_name'];
+    $fileSize = $_FILES['file']['size'];
+    $fileError = $_FILES['file']['error'];
+    $fileType = $_FILES['file']['type'];
+
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+    $allowed = array('jpg', 'jpeg', 'png');
+
+    $tittle = $_POST['tittle'];
+    $tax_type = $_POST['tax_type'];
+    $description = $_POST['description'];
+    $receipt_date = $_POST['receipt_date'];
+    // $user_id = $_SESSION['userID'];
+    
+    echo $user_id;
+
+    if (in_array($fileActualExt, $allowed)) {
+        if ($fileError===0) {
+            if ($fileSize < 1000000) {
+                $fileNameNew = uniqid('', true).".".$fileActualExt;
+                $fileDestination = '../image_uploads/'.$fileNameNew;
+                move_uploaded_file($fileTmpName, $fileDestination);
+                // Insert image file name into database
+                $insert = $db->query("INSERT into images (tittle,tax_type,description,file_name, receipt_date,uploaded_on,user_id) VALUES ('$tittle','$tax_type','$description','$fileNameNew', '$receipt_date', NOW(), '$user_id')");
+                if($insert){
+                    $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
+                    
+                    // echo '<script type="text/javascript">  { alert("File uploaded"); } </script>';
+                }else{
+                    $statusMsg = "File upload failed, please try again.";
+            } 
+            }
+            else {
+                echo "your file is too big";
+            }
+        }
+        else {
+            echo "There was an error uploading your file";
+        }
+    }
+    else {
+        echo "you cannot upload files of this type!";
+    }
+    
+}
+?>

@@ -79,7 +79,7 @@ function login() {
 				window.location = './';
 				break;
 			case '1':
-				document.getElementById('errs').innerHTML += '<div class="err">Incorrect username or password</div>';
+				document.getElementById('errs').innerHTML += '<div class="err">Incorrect email or password</div>';
 				break;
 			case '2':
 				document.getElementById('errs').innerHTML += '<div class="err">Failed to connect to database. Please try again later.</div>';
