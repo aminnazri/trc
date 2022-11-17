@@ -1,27 +1,40 @@
-
-
+<!-- https://www.youtube.com/watch?v=HKWtJPumb7g -->
+<?php
+require_once 'template/header.html';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href ='css/calculator.css'/>
     <title>Calculator</title>
 </head>
-<body>
+<body >
 
 
-    <table>
+    <table class="table table-borderless mt-3">
     <form action="" id="calculator_form" >
         <div class="income_details">
-            <label class="control-label" for="income">income</label>
-            <input type="number" id="income" placeholder="income" max=500 min="0" value="0">
+            <!-- <label class="control-label" for="income">income</label>
+            <input type="number" id="income" placeholder="income" max=500 min="0" value="0"> -->
+
+            <tr>
+                <td><h1>income</h1></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="number" id="income" placeholder="income" max=500 min="0" value="0"></td>
+            </tr>
         </div>
         <div class="income_details">
             <tr>
-                <td><h1>Tax Relief Details
-                </h1></td>
+                <td><h1>Tax Relief Details</h1></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -291,7 +304,7 @@
     <button class="calculate-btn" type="submit" >calculate</button>
 
     <div class="output" id="output">total tax</div>
-    <script src="../js/calculator.js"></script>
+    <script src="js/calculator.js"></script>
 </body>
 </html>
 

@@ -1,7 +1,7 @@
 <?php 
 	require_once 'php/utils.php'; 
     // echo basename((__DIR__));
-    echo getcwd();
+    // echo getcwd(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +21,7 @@
         <div class="contentBx">
             <div class="formBx">
                 <h2>Login</h2>
-                <form action="" id="loginForm">
+                <form action="" id="loginForm" method="post">
                     <div class="inputBx">
                         <div id="errs" class="errorcontainer"></div>
                         <span>Email</span>

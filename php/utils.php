@@ -1,6 +1,8 @@
 <?php
 	require_once 'config.php';
-
+	session_start();
+	$user_id = $_SESSION['userID']; // current user id
+	$C = connect();
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
 
@@ -16,7 +18,12 @@
 		return $C;
 	}
 
-
+	function sqlDisplay($C, $query){
+		
+		$result = mysqli_query($C, $query);
+		$row = mysqli_fetch_assoc($result);
+		return $row;
+	}
 
 	function sqlSelect($C, $query, $format = false, ...$vars) {
 		$stmt = $C->prepare($query);

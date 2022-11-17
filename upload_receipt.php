@@ -1,4 +1,7 @@
+<?php
+require_once 'template/header.html'; 
 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,6 +38,11 @@
         <!-- <button type="submit" onclick="upload_receipt();" name="submit">UPLOAD</button> -->
     </form>
 
+    <script>
+        $(document).ready(function () {
+            $(".upload_receipt").addClass("active");
+		});
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

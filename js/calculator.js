@@ -141,3 +141,7 @@ calculateBtn.addEventListener("click", () => {
     // tax_amount(income.value);
     // console.log()
 });
+
+$(document).ready(function () {
+    $(".calculator").addClass("active");
+});

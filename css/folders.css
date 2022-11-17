@@ -1,0 +1,77 @@
+:root {
+    --background: #1d2d50;
+    --accent: #fcdab7;
+    --accent2: #1e5f74;
+    --color: #fefefe;
+    --dull: #b8b8b8;
+    --error: #e74c3c;
+    --highlight: rgba(255,255,255,.05);
+}
+
+body {
+    color: black;
+    background-color: white;
+
+    width: 100%;
+    height: 100vh;
+    text-decoration: none;
+}
+a:link { text-decoration: none; }
+#facilities{
+    background-color: #dbe536;
+    padding: 30px 0px;
+}
+
+h3{
+    font-size: large;
+}
+
+#facilities h1{
+    font-weight: 900;
+    font-size: 34px;
+    padding-bottom: 5px;
+}
+
+.tittle{
+    text-align: center;
+    padding: 25px 0px;
+}
+
+.tittle p{
+    font-size: 18px;
+    text-align: left;
+}
+
+.card-body{
+    /* box-shadow: 0 0 20px 7px rgba(0,0,0,0.1); */
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100px;
+}
+
+.card{
+    margin: 20px 10px;
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.card img{
+    background: red;
+    width: 30%;
+    padding: 20px;
+}
+
+.card-body a{
+    color: #0c7f90;
+    text-decoration: none;
+    font-size: 15px;
+    margin-top: auto;
+    font-weight: 600;
+}
+
+.card-body a:hover{
+    color: #63a6b0;
+    text-decoration: none;
+}

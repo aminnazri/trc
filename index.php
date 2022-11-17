@@ -1,6 +1,7 @@
 <?php 
 	require_once 'php/utils.php'; 
-	
+	require_once 'template/header.html';
+
 	if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 		header("Location: login");
 		exit;
@@ -29,7 +30,7 @@
 	<meta name="csrf_token" content="<?php echo createToken(); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Secure Site</title>
-	<link rel="stylesheet"  href ='style.css' />
+	<link rel="stylesheet"  href ='css/index.css'/>
 	<link rel="stylesheet" href="<?php echo dirname($_SERVER['PHP_SELF']) . '/style.css' ?>" />
 </head>
 <body>
@@ -52,6 +53,9 @@
 	</div>
 	<script>
 		var user = JSON.parse(document.getElementById('data').textContent);
+		$(document).ready(function () {
+    		$(".index").addClass("active");
+		});
 	</script>
 	<script src="script.js"></script>
 

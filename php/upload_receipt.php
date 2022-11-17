@@ -2,11 +2,11 @@
 session_start();
 require_once 'utils.php'; 
 $user_id = $_SESSION['userID']; // current user id
+$C = connect();
 
 if(isset($_POST['submit']))
 {
-    $C = connect();
-
+    
     $fileName = $_FILES['file']['name'];
     $fileTmpName = $_FILES['file']['tmp_name'];
     $fileSize = $_FILES['file']['size'];
@@ -46,7 +46,7 @@ if(isset($_POST['submit']))
                 move_uploaded_file($fileTmpName, $fileDestination);
                 
                 // Insert image file name into database
-                $query = "INSERT into images (tittle,tax_type,description,file_name, receipt_date,uploaded_on,user_id,amount) VALUES ('$tittle','$tax_type','$description','$fileNameNew', '$receipt_date', NOW(), '$user_id','$amount')";
+                $query = "INSERT into images (tittle,category,description,file_name, receipt_date,uploaded_on,user_id,amount) VALUES ('$tittle','$tax_type','$description','$fileNameNew', '$receipt_date', NOW(), '$user_id','$amount')";
                 $sql = sqlInsert($C, $query);
                 if($sql){
                     $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
@@ -68,3 +68,14 @@ if(isset($_POST['submit']))
         echo "you cannot upload files of this type!";
     }
 }
+
+// $query = "SELECT * FROM images where category = 'lifestyle'";
+// $result = mysqli_query($C, $query);
+// $array = array();
+// while($row = mysql_fetch_assoc($result)){
+//     $array[] = $row;
+//     echo $row['category'];
+// }
+// print_r($array);
+// echo 'hai';
+
