@@ -42,6 +42,7 @@ require_once 'template/header.html';
         $(document).ready(function () {
             $(".upload_receipt").addClass("active");
 		});
+        
     </script>
     <script src="script.js"></script>
 </body>
