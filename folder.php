@@ -54,10 +54,11 @@ function get_sum($category){
         color: black;
     }
     .card:hover{
-        transform: scale(1.04);
+        /* transform: scale(1.04); */
         transition: all ease-in 0.20s;
         transition: all ease-out 0.20s;
-        animation-duration: 0.8s;
+        animation-duration: 1s;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1);
     }
     body{
         padding:   0;
@@ -83,11 +84,11 @@ function get_sum($category){
 
     <!-- <div id="products-cards-container"></div> -->
     <div class="middle">
-        <div class="container mt-5  p-3 place bg-danger" >
+        <div class="container mt-5  p-3 place " >
             <div class="row gy-3 my-3" id="content">
                 <div class="col-sm-6 col-md-4 col-lg-3" >
                     <a href="">
-                        <div class="card" style="width: 12rem;">
+                        <div class="card " style="width: 12rem;">
                             <div class="image text-center text-bg-info rounded m-2">
                                 <svg style="width: 50%; height: auto;" class="card-image-top rounded " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M228.3 469.1L47.6 300.4c-4.2-3.9-8.2-8.1-11.9-12.4h87c22.6 0 43-13.6 51.7-34.5l10.5-25.2 49.3 109.5c3.8 8.5 12.1 14 21.4 14.1s17.8-5 22-13.3L320 253.7l1.7 3.4c9.5 19 28.9 31 50.1 31H476.3c-3.7 4.3-7.7 8.5-11.9 12.4L283.7 469.1c-7.5 7-17.4 10.9-27.7 10.9s-20.2-3.9-27.7-10.9zM503.7 240h-132c-3 0-5.8-1.7-7.2-4.4l-23.2-46.3c-4.1-8.1-12.4-13.3-21.5-13.3s-17.4 5.1-21.5 13.3l-41.4 82.8L205.9 158.2c-3.9-8.7-12.7-14.3-22.2-14.1s-18.1 5.9-21.8 14.8l-31.8 76.3c-1.2 3-4.2 4.9-7.4 4.9H16c-2.6 0-5 .4-7.3 1.1C3 225.2 0 208.2 0 190.9v-5.8c0-69.9 50.5-129.5 119.4-141C165 36.5 211.4 51.4 244 84l12 12 12-12c32.6-32.6 79-47.5 124.6-39.9C461.5 55.6 512 115.2 512 185.1v5.8c0 16.9-2.8 33.5-8.3 49.1z"/></svg>
                             </div>
@@ -126,7 +127,7 @@ function get_sum($category){
         text1: '00.00',
         text2: '00.00',
         alt: 'image',
-        link: '#',
+        link: 'all',
         bg_color: 'text-bg-info',
     },
     {
@@ -144,7 +145,7 @@ function get_sum($category){
         text1: '<?php echo $parent_medical?>',
         text2: '30.00',
         alt: 'image',
-        link: '#',
+        link: 'parentmedical',
         bg_color: 'text-bg-info',
     },
     {
@@ -162,7 +163,7 @@ function get_sum($category){
         text1: '<?php echo $support_equipment?>',
         text2: '30.00',
         alt: 'image',
-        link: '#',
+        link: 's_e',
         bg_color: 'text-bg-info',
     },
     {
@@ -180,7 +181,7 @@ function get_sum($category){
         text1: '<?php echo $lifestyle?>',
         text2: '30.00',
         alt: 'image',
-        link: '#',
+        link: 'lifestyle',
         bg_color: 'text-bg-info',
     },
     {
@@ -223,10 +224,11 @@ function get_sum($category){
 
     function returnCards(valuesCards) {
         return  valuesCards.map(valuesCard => `
+        
         <div class="col-sm-6 col-md-3 col-lg-3" >
-            
+
             <div class="card">
-                <a href = "${valuesCard.link}">
+                <a href = "images.php?f=${valuesCard.link}" >
                     <div class="image text-center ${valuesCard.bg_color} rounded m-2">
                             <svg style="width: 50%; height: auto;" class="card-image-top rounded " ${valuesCard.image}"></svg>
                         </div>
@@ -240,9 +242,11 @@ function get_sum($category){
                     </div>
                 </div>
             
-                </a></div>
-
+                </a>
             </div>
+
+
+        </div>
 
         `).join('') + "</div>";
     }

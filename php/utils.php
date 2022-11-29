@@ -21,7 +21,7 @@
 	function sqlDisplay($C, $query){
 		
 		$result = mysqli_query($C, $query);
-		$row = mysqli_fetch_assoc($result);
+		$row = mysqli_fetch_array($result);
 		return $row;
 	}
 
