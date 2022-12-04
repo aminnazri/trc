@@ -1,6 +1,6 @@
 <?php
 require_once 'php/utils.php'; 
-require_once 'template/header.html'; 
+require_once 'template/header.php'; 
 $parent_medical = get_sum('parent_medical'); //8000
 $annuity = get_sum('annuity'); //3000;
 $edu_med_ins = get_sum('edu_med_ins'); //3000;
@@ -65,7 +65,8 @@ function get_sum($category){
     }
     .middle{
         display:flex;
-        
+        margin-left:20px;
+        margin-right:20px;
     }
 </style>
 <head>
@@ -84,7 +85,7 @@ function get_sum($category){
 
     <!-- <div id="products-cards-container"></div> -->
     <div class="middle">
-        <div class="container mt-5  p-3 place " >
+        <div class="container mt-5 ml-6  p-3 place " >
             <div class="row gy-3 my-3" id="content">
                 <div class="col-sm-6 col-md-4 col-lg-3" >
                     <a href="">
@@ -190,7 +191,7 @@ function get_sum($category){
         text1: '<?php echo $lifestyle_add?>',
         text2: '30.00',
         alt: 'image',
-        link: '#',
+        link: 'lifestyle_addition',
         bg_color: 'text-bg-info',
     },
     {
@@ -255,7 +256,7 @@ function get_sum($category){
     $(document).ready(function () {
     		$(".folders").addClass("active");
     });
-    document.title = 'Folder'
+    document.title = 'Folder';
 
 </script>
 </body>

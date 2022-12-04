@@ -1,6 +1,6 @@
 <!-- https://www.youtube.com/watch?v=HKWtJPumb7g -->
 <?php
-require_once 'template/header.html';
+require_once 'template/header.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -9,7 +9,6 @@
     <meta name="csrf_token" content="<?php echo createToken(); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet"  href ='css/register.css'/>
-    <link rel="stylesheet" href="<?php echo dirname($_SERVER['PHP_SELF']) . 'css/style.css' ?>" />
 
     <title>Register</title>
 </head>

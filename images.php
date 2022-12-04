@@ -1,12 +1,12 @@
 <?php
 require_once 'php/utils.php';
-require_once 'template/header.html'; 
+require_once 'template/header.php'; 
 $folder = $_GET['f'];
 echo $folder;
 session_start();
 $user_id = $_SESSION['userID'];
 $C = connect();
-
+// echo $C;
 if ($_GET['f'] != 'all') {
     $condition = sprintf('AND category = "%s"', $folder);
     echo 'hai';

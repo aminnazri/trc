@@ -1,6 +1,6 @@
 <?php 
 	require_once 'php/utils.php'; 
-	require_once 'template/header.html';
+	require_once 'template/header.php';
 
 	if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 		header("Location: login");
@@ -11,7 +11,9 @@
 	$C = connect();
 	if($C) {
 		$res = sqlSelect($C, 'SELECT * FROM users WHERE id=?', 'i', $_SESSION['userID']);
+	
 		if($res && $res->num_rows === 1) {
+			
 			$user = $res->fetch_assoc();
 		}
 		else {
@@ -21,6 +23,7 @@
 	else {
 		exit;
 	}
+
 
 ?>
 <!DOCTYPE html>

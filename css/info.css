@@ -1,0 +1,41 @@
+*{
+    text-decoration: none;
+}
+
+.content{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    /* margin-left:-20px; */
+
+}
+.card{
+    /* background:red; */
+    margin:20px;
+    padding:20px;
+    border-radius: 10px;
+    border-width: 5px;
+    width: 60rem;
+}
+
+@media(max-width:576px){
+    body{
+        
+        margin: 0;
+padding: 0;
+    }
+
+.card{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    margin-top: 100px;
+}
+.content{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    /* margin-left:-20px; */
+
+}
+}
