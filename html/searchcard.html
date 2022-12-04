@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .card {
+  width: 150px;
+  height: 160px;
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.filter {
+  margin-bottom: 30px;
+  display: block;
+}
+</style>
+<body>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <input class="filter" placeholder="filter" />
+    
+    <div class="card col-3 text-center" data-string="John A">
+      <div class="card-header text_center">
+        <h4 class="card-title"><a href="{% url 'views.user_profile' username=user.username %}" target="_top">John A</a></h4>
+      </div>
+      <div class="card-body bg-light">
+        <p class="card-text text-center">
+          {{user.user_profile.title}}<br/> {{user.user_profile.empid}}
+          <br/>
+        </p>
+      </div>
+    </div>
+    
+    <div class="card col-3 text-center" data-string="Jana B">
+      <div class="card-header text_center">
+        <h4 class="card-title"><a href="{% url 'views.user_profile' username=user.username %}" target="_top">Jana B</a></h4>
+      </div>
+      <div class="card-body bg-light">
+        <p class="card-text text-center">
+          {{user.user_profile.title}}<br/> {{user.user_profile.empid}}
+          <br/>
+        </p>
+      </div>
+    </div>
+    
+    <div class="card col-3 text-center" data-string="Jerdz C">
+      <div class="card-header text_center">
+        <h4 class="card-title"><a href="{% url 'views.user_profile' username=user.username %}" target="_top">Jerdz C</a></h4>
+      </div>
+      <div class="card-body bg-light">
+        <p class="card-text text-center">
+          {{user.user_profile.title}}<br/> {{user.user_profile.empid}}
+          <br/>
+        </p>
+      </div>
+    </div>
+    
+    <div class="card col-3 text-center" data-string="Jake D">
+      <div class="card-header text_center">
+        <h4 class="card-title"><a href="{% url 'views.user_profile' username=user.username %}" target="_top">Jake D</a></h4>
+      </div>
+      <div class="card-body bg-light">
+        <p class="card-text text-center">
+          {{user.user_profile.title}}<br/> {{user.user_profile.empid}}
+          <br/>
+        </p>
+      </div>
+    </div>
+<script>
+
+
+$(".filter").on("keyup", function() {
+  var input = $(this).val().toUpperCase();
+
+  $(".card").each(function() {
+    if ($(this).data("string").toUpperCase().indexOf(input) < 0) {
+      $(this).hide();
+    } else {
+      $(this).show();
+    }
+  })
+});
+</script>
+</body>
+</html>

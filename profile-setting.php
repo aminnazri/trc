@@ -32,6 +32,7 @@
             $sql1 = mysqli_query($C, $query1);
             while ($row = mysqli_fetch_array($sql1)) {
         ?>
+        
         <form method="post" id="upload_receipt" class="content" enctype="multipart/form-data" >
             <div class="container">
                 <div class="wrapper1 bg-white mt-sm-5">
