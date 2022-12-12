@@ -1,5 +1,5 @@
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 7px;
 }
 /* Track */
 ::-webkit-scrollbar-track {
@@ -19,8 +19,11 @@
 
 :root{
     --header-height: 3rem;
-    --nav-width: 68px;
-    --first-color: #4723D9;
+    --nav-width: 75px;
+    --first-color: #ebf0fc;
+    --second-color: #041e49;
+    --black-color: #000;
+    --darkgrey-color: #595a5a;
     --first-color-light: #AFA5D9;
     --white-color: #ffffff;
     --body-font: 'Nunito', sans-serif;
@@ -37,23 +40,12 @@ body{
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
     transition: .5s;
-    
+    background-color: var(--first-color);
     /* display:flex; */
-    
+   
 }
 a{
     text-decoration: none;
-}
-
-.header .profile{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    column-gap: 1rem;
-}
-
-.header .profile .text{
-    margin-bottom: 0!important;
 }
 
 .header{
@@ -66,14 +58,30 @@ a{
     align-items: center;
     justify-content: space-between;
     padding: 0 1rem;
-    background-color: var(--white-color);
+    background-color: var(--first-color);
     z-index: var(--z-fixed);
     transition: .5s;
     margin-bottom: 20px;
+    
+}
+
+.profile{
+    margin: 5px;
+}
+
+.header .profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 2rem;
+}
+
+.header .profile .text{
+    margin-bottom: 0!important;
 }
 
 .header_toggle{
-    color: var(--first-color);
+    color: var(--black-color);
     font-size: 1.5rem;
     cursor: pointer
 }
@@ -101,6 +109,7 @@ a{
     padding: .5rem 1rem 0 0;
     transition: .5s;
     z-index: var(--z-fixed)
+    
 }
 
 .nav{
@@ -108,10 +117,11 @@ a{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow: hidden
+    overflow: hidden;
+    
 }
 
-.nav_logo, .nav_link{
+.nav_link{
     display: grid;
     grid-template-columns: max-content max-content;
     align-items: center;
@@ -120,29 +130,31 @@ a{
 }
 
 .nav_logo{
-    margin-bottom: 2rem
+    display: flex;
+    /* margin-bottom: 2rem */
+    margin:2px;
 }
 
 .nav_logo-icon{
     font-size: 1.25rem;
-    color: var(--white-color)
+    color: var(--black-color)
 }
 
 .nav_logo-name{
-    color: var(--white-color);
+    color: var(--darkgrey-color);
     font-weight: 700
 }
 
 .nav_link{
     position: relative;
-    color: var(--first-color-light);
+    color: var(--darkgrey-color);
     margin-bottom: 1.5rem;
     transition: .3s;
     cursor: pointer;
     text-decoration: none;
 }
 .nav_link:hover{
-    color: var(--white-color);
+    color: var(--third-color);
     /* background-color: rgba(255, 255, 255, 0.445); */
     text-decoration: none;
 /* 
@@ -151,55 +163,56 @@ a{
     margin: 0 5px ; */
 }
 
-.nav_link:hover 
+
+
 .nav_icon{
-    font-size: 1.5rem
+    font-size: 1.4rem
 }
 .nav_icon:hover{
-    color: var(--white-color);
-    /* background-color: rgb(255, 255, 255); */
+    color: var(--third-color);
+    background-color: rgb(218, 211, 211);
     text-decoration: none;
     /* display: block; */
     /* position:relative; */
-    border-radius: 5%;
+    border-radius: 50%;
+    /* padding: 10px; */
     animation: 2s;
+    display: block;
+
+    /* font-size: 1.8rem */
     /* margin: 0 5px ; */
 }
 
 .show{
     left: 0
 }
-.body-pd{
-    padding-left: calc(var(--nav-width) + 1rem)
-}
+
 .active{
-    color: var(--white-color)
+    color: var(--black-color)
 }
 .active::before{
     content: '';
     position: absolute;
-    left: 0;width: 2px;
+    left: 0;
+    width: 5px;
     height: 32px;
-    background-color: var(--white-color)
+    background-color: var(--black-color)
 }
 .height-100{
     height:100vh
 }
 
 
-    body{
-        padding-left: calc(var(--nav-width) + 1rem)
-    }
-
-
 @media screen and (min-width: 768px){
     body{
         margin: calc(var(--header-height) + 1rem) 0 0 0;
-        padding-left: calc(var(--nav-width) + 2rem)
+        /* padding-left: calc(var(--nav-width) + 2rem) */
     }
     .header{
         height: calc(var(--header-height) + 1rem);
-        padding: 0 2rem 0 calc(var(--nav-width) + 2rem)}
+        padding: 0 1px 0 calc(var(--nav-width) + 1px)
+        
+    }
     .header_img{
         width: 40px;height: 40px
     }
@@ -208,12 +221,15 @@ a{
     }
     .l-navbar{
         left: 0;padding: 1rem 1rem 0 0
+        
     }
     .show{
-        width: calc(var(--nav-width) + 156px)
+        width: calc(var(--nav-width) + 156px);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.281);
     }
     .body-pd{
         padding-left: calc(var(--nav-width) + 188px)
+        
     }
 
 }
