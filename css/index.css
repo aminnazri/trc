@@ -4,7 +4,7 @@
 
 
 :root {
- --background: #1d2d50;
+ --background: #edf2fc;
  --accent: #fcdab7;
  --accent2: #1e5f74;
  --color: #fefefe;
@@ -17,184 +17,138 @@
 body {
 
 	font-family: poppins;
-	height: 100vh;
+	/* height: 100vh; */
 	width: 100%;
-	background: #c8d9ff;
-	color: var(--color);
+	background: var(--background);
+	/* color: var(--color); */
+	padding:   0;
+	overflow: hidden;
 }
-h1 {
-	font-size: 5em;
-	margin: 40px 0;
+.middle{
+    display:flex;
+    margin-left:80px;
+    margin-right:80px;
+    background-color: #fff;
+    margin-top: 15px;
+    border-radius: 30px;
+	margin-bottom: 5px;
+	width: 90%;
+	height: 85vh;
+	position: fixed;
+	overflow-y: scroll;
+	padding: 20px 100px;
 }
 
-.hidden {
-	position: absolute;
-	left: -1000%;
-	top: -1000%;
-	height: 0;
-	width: 0;
-	pointer-events: none;
-	opacity: 0;
+body ::-webkit-scrollbar-track {
+	/* box-shadow: inset 0 0 5px grey;  */
+	border-radius: 10px;
+	margin-top: 20px;
+    margin-bottom: 20px;
+	background: rgb(255, 255, 255); 
+  }
+body  ::-webkit-scrollbar-thumb {
+	background: rgb(189, 189, 189); 
+	border-radius: 10px;
 }
 
-.formWrapper {
-	height: 100%;
-	width: 100%;
-	display: grid;
+.bottom{
+	margin-bottom: 20px;
+}
+
+/* span {
+  display: block;
+  padding: 15px;
+} */
+
+/* End This sample only CSS */
+
+/* Progress bar CSS */
+
+.progress .progress-content .progres-text{
+	display: flex;
+	justify-content: space-between;
+}
+
+.progress *:not([data-progress]) {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.progress {
+  width: 100%;
+  /* max-width: 500px; */
+  height: 350px;
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  padding: 20px;
+  border-radius: 20px;
+  border: solid 3px rgba(54, 162, 235, 1);
+  background: white;
+  overflow-y: scroll;
+}
+
+.progress [data-progress] {
+  height: 15px;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25) inset;
+  border-radius: 20px;
+  margin: 5px 0 10px 0;
+  overflow: hidden;
+}
+
+
+
+
+[data-progress]::after {
+  content: "";
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-image: linear-gradient(#99caff, #1a88ff 50%, #007bff 50%);
+  width: 0;
+  height: 100%;
+  box-sizing: border-box;
+  font-size: 10px;
+  color: white;
+  padding: 0 3px;
+  transition: 2s;
+}
+
+[data-progress].animate-progress::after {
+  content: attr(data-progress) "%";
+  width: var(--animate-progress);
+}
+
+/* End Progress bar CSS */
+
+
+
+/* .chartMenu {
+	width: 100vw;
+	height: 40px;
+	background: #1A1A1A;
+	color: rgba(54, 162, 235, 1);
+  } */
+  .chartMenu p {
+	padding: 10px;
+	font-size: 20px;
+  }
+  .chartCard {
+	/* width: 100vw; */
+	/* height: calc(100vh - 40px); */
+	background: rgba(58, 88, 107, 0.2);
+	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-form {
-	width: 95vw;
-	max-width: 500px;
-	box-sizing: border-box;
-	padding: 50px 0;
-}
-form h1 {
-	margin: 0 0 15px 0;
-	font-size: 3em;
-}
-.inputblock {
-	position: relative;
-	display: block;
-	padding: 20px 0;
-	clear: both;
-}
-.inputblock input {
-	width: 100%;
-	padding: 7px;
-	box-sizing: border-box;
-	display: block;
-	background: transparent;
-	outline: none;
-	font-family: inherit;
-	font-size: 15px;
-	color: inherit;
-	border: 0;
-	margin-top: 2px;
-	border-bottom: 1px solid var(--color);
-}
-.inputblock label {
-	display: block;
-	font-size: 13px;
-	color: var(--dull);
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	font-weight: 300;
-}
+  }
+  .chartBox {
+	width: 600px;
+	padding: 20px;
+	border-radius: 20px;
+	border: solid 3px rgba(54, 162, 235, 1);
+	background: white;
+  }
 
 
-.btn {
-	display: inline-block;
-	padding: 12px 60px;
-	font-size: 18px;
-	border: 2px solid var(--color);
-	border-radius: 2px;
-	cursor: pointer;
-	-webkit-user-select: none;
-	user-select: none;
-	transition: background .3s, color .3s;
-}
-.btn:hover, .btn:active {
-	border: 0;
-	padding: 14px 62px;
-	background: var(--color);
-	color: var(--background);
-}
-.btn:active {
-	box-shadow: inset 0 0 4px 5px rgba(0,0,0,.1);
-}
-
-.errcontainer {
-	font-size: 14px;
-	opacity: 1;
-	transition: opacity .3s;
-}
-.err {
-	margin: 5px 0;
-	color: var(--error);
-}
-.err ul {
-	list-style-type: none;
-	margin: 0;
-	padding-inline-start: 2em;
-}
-
-.wave {
-	width: 100vw;
-	height: 25vw;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	z-index: -1;
-	pointer-events: none;
-}
-.wave:nth-child(2) {
-	bottom: -5%;
-	width: 103%;
-	left: -3%;
-}
-form a {
-	position: relative;
-	margin: 0;
-	line-height: 1.4em;
-	display: inline-block;
-	color: var(--dull);
-	text-decoration: none;
-	transition: color .3s;
-}
-.errorcontainer a {
-	display: inline;
-	line-height: normal;
-	text-decoration: underline;
-	color: inherit;
-}
-form a:before {
-	content: "";
-	position: absolute;
-	left: 50%;
-	bottom: 0;
-	height: 1px;
-	background: var(--dull);
-	width: 0px;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
-	transition: width .5s;
-}
-form a:hover:before {
-	width: 100%;
-}
-form a:hover {
-	color: var(--color);
-}
-
-.loader {
-	height: 64px;
-	width: 64px;
-	position: fixed;
-	top: calc(50% - 32px);
-	left: calc(50% - 32px);
-	border: 2px solid var(--highlight);
-	border-left: 2px solid var(--color);
-	border-radius: 50%;
-	-webkit-animation: loader 1.5s linear infinite;
-	-moz-animation: loader 1.5s linear infinite;
-	-ms-animation: loader 1.5s linear infinite;
-	-o-animation: loader 1.5s linear infinite;
-	animation: loader 1.5s linear infinite;
-}
-
-@-webkit-keyframes loader {to {-o-transform: rotate(360deg);-ms-transform: rotate(360deg);-moz-transform: rotate(360deg);-webkit-transform: rotate(360deg);transform: rotate(360deg);}}
-@keyframes loader {to {-o-transform: rotate(360deg);-ms-transform: rotate(360deg);-moz-transform: rotate(360deg);-webkit-transform: rotate(360deg);transform: rotate(360deg);}}
-
-
-.message {
-	text-align: center;
-}
-
-.message h2 {
-	font-size: 4em;
-}

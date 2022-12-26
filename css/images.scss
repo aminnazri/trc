@@ -6,16 +6,7 @@ body {
 *{
     font-family: 'Poppins', sans-serif;
     text-decoration: none;
-}@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
-body {
-    font-family: 'Poppins', sans-serif;
-    /* background: #eee; */
 }
-*{
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-}
-
 body{
   /* padding:   0; */
   margin-top: 80px;
@@ -26,9 +17,6 @@ body{
   margin-right:50px;
 }
 
-.card{
-  // width: 80%;
-}
 
 .card-img{
     width: 100%!important;
@@ -54,20 +42,11 @@ body{
   border: none;
   }
 
-
-
-
-
-
-
-
 *{
 	padding: 0px;
 	margin: 0px;
 }
-body{
-	// background-color: #dbddf1;
-}
+
 .gallery{
 	padding: 80px 0px;
 }
@@ -82,9 +61,7 @@ img{
 	cursor: pointer;
 }
 
-.modal-dialog{
-  width:800px;
-}
+
 
 #gallery-popup .modal-img{
 	width: 50%;
@@ -94,10 +71,27 @@ img{
 .modal-body{
   display: flex;
   align-items: center;
+  // flex-direction: column;
   // background: red;
-  justify-content: center;
-  
+
+  justify-content:center;
+  // height: 600px;
+  background-color: rgb(206, 206, 206);
 }
+
+.modal-body img{
+  // width: 400px;
+  width: 500px;
+  // object-fit: fill;
+}
+.modal-body .image_details{
+  // background-color: red;
+  width: 300px;
+}
+.c{
+  margin: 20px
+}
+
 
 // display popup option to delete and edit item
 .menu-nav {
@@ -168,3 +162,4 @@ a div i{
   transition: opacity 0.2s, z-index 0.2s, max-height  0.2s;
   
 }
+
