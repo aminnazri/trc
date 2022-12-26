@@ -1,5 +1,15 @@
 <!-- https://boxicons.com/ - website utk amik icon --> 
 
+<?php
+
+    require_once './php/utils.php'; 
+    session_start();
+    $user_id = $_SESSION['userID'];
+    $C = connect();
+
+
+?>
+
 <html>
 <head>
     <meta charset='utf-8'>
@@ -26,14 +36,28 @@
                 <span class="nav_logo-name"><h5><b>simpan.com</b></h5></span> 
         </a>
         <div class="profile">
+            <?php 
+                $query1 = "SELECT * FROM users where id='$user_id'";
+                $sql1 = mysqli_query($C, $query1);
+                while ($row = mysqli_fetch_array($sql1)) {
+                    $profile_pic ="";
+                    if ($row['picture_link'] == "") {
+                        $profile_pic = "https://img.icons8.com/ios-filled/50/null/user-male-circle.png";
+                    }
+                    else {
+                        $profile_pic = $row['picture_link'];
+                    }
+            ?>
 
-            <div class="header_img"> 
-                <a href="profile-setting.php"><img src="https://i.imgur.com/hczKIze.jpg" alt=""> </a>
-            </div>
             <div class="text">
-                <small><b>Amin Nazri</b></small><br>
-                <small>121233</small>
+                <small><b><?=$row['name'] ?> <?=$row['last_name']?></b></small><br>
+                <small><?=$row['id']?></small>
             </div>
+            <div class="header_img"> 
+                <a href="profile-setting2.php"><img src="../image/profile_image/<?=$profile_pic?>" alt=""> </a>
+
+            </div>
+            <?php };?>
         </div>
     </header>
     <div class="l-navbar" id="nav-bar">
@@ -63,7 +87,7 @@
                         <i class='bx bx-folder nav_icon'></i> 
                         <span class="nav_name">Files</span> 
                     </a> 
-                    <a href="#" class="nav_link"> 
+                    <a href="../folders.php" class="nav_link"> 
                         <i class='bx bx-bar-chart-alt-2 nav_icon'></i> 
                         <span class="nav_name">Stats</span> 
                     </a> 
@@ -112,13 +136,13 @@
         /*===== LINK ACTIVE =====*/
         const linkColor = document.querySelectorAll('.nav_link')
 
-        function colorLink(){
-            if(linkColor){
-                linkColor.forEach(l=> l.classList.remove('active'))
-                this.classList.add('active')
-            }
-        }
-        linkColor.forEach(l=> l.addEventListener('click', colorLink))
+        // function colorLink(){
+        //     if(linkColor){
+        //         linkColor.forEach(l=> l.classList.remove('active'))
+        //         this.classList.add('active')
+        //     }
+        // }
+        // linkColor.forEach(l=> l.addEventListener('click', colorLink))
 
     // Your code to run since DOM is loaded and ready
     });
