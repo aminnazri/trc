@@ -1,5 +1,6 @@
 <?php
 	require_once 'php/utils.php'; 
+    require_once 'folder_sum.php'; 
 	require_once 'template/header.php';
     session_start();
     $user_id = $_SESSION['userID'];
@@ -35,8 +36,22 @@
     $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
 
     if(isset($_POST["submit"])){
-        $monthly_salary = $_POST['monthly-salary'];
+
+        $first_name = $_POST['firstname'];
+        $last_name = $_POST['lastname'];
+        $monthly_salary = $_POST['monthly_income'];
+        $epf = $_POST['epf'];
+        $socso = $_POST['socso'];
+        $pcb = $_POST['pcb'];
+        $zakat = $_POST['zakat'];
+        $current_tax = $_POST['current_tax'];
         $yearly_tax = $_POST['chargeable_income_tax'];
+
+
+
+
+        $taxable_income = $monthly_salary*12 - $epf - $socso -9000;
+        $tax_amount =  tax_amount($taxable_income)-$zakat-$pcb;
 
         if(!empty($_FILES["file"]["name"])){
             
@@ -46,7 +61,7 @@
                 // Upload file to server
                 if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
                     // Insert image file name into database
-                    $insert = $C->query("UPDATE users SET picture_link = '$fileName', monthly_income='$monthly_salary'  where id='$user_id'");
+                    $insert = $C->query("UPDATE users SET picture_link = '$fileName', name='$first_name', last_name='$last_name'  where id='$user_id'");
                     
                     // $query = "profile_image (id,picture_name) VALUES ('1','$fileName') ";
                     // $sql = sqlInsert($C, $query);
@@ -62,11 +77,21 @@
                 $statusMsg = 'Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.';
             }
         }
+        elseif (empty($_FILES["file"]["name"])){
+            $insert = $C->query("UPDATE users SET name='$first_name', last_name='$last_name'  where id='$user_id'");
+            $insert2 = $C->query("UPDATE tax_calculator SET month_income='$monthly_salary', epf='$epf', socso='$socso',  pcb='$pcb',  zakat='$zakat', current_tax='$tax_amount'  where user_id='$user_id'");
+            if($insert2){
+                $statusMsg = "The file has been uploaded successfully.";
+            }else{
+                $statusMsg = "File upload failed, please try again.";
+            }
+        }
 
         else {
             // Insert image file name into database
-            $insert = $C->query("UPDATE users SET monthly_income='$monthly_salary', yearly_tax='$yearly_tax'  where id='$user_id'");
-                    
+            // $insert = $C->query("UPDATE users SET monthly_income='$monthly_salary', yearly_tax='$yearly_tax'  where id='$user_id'");
+            $insert = $C->query("UPDATE tax_calculator SET month_income='$monthly_salary', epf='$epf', socso='$socso',  pcb='$pcb',  zakat='$zakat'  where user_id='$user_id'");
+
             // $query = "profile_image (id,picture_name) VALUES ('1','$fileName') ";
             // $sql = sqlInsert($C, $query);
             if($insert){
@@ -113,10 +138,10 @@
     <body className='snippet-bodys '>
     
         <?php 
-            $query1 = "SELECT * FROM users where id='$user_id'";
-            $sql1 = mysqli_query($C, $query1);
-            while ($row = mysqli_fetch_array($sql1)) {
-                $monthly_income=$row['monthly_income']*12;
+            $query = "SELECT * FROM users where id='$user_id'";
+            $user_profile_sql = mysqli_query($C, $query1);
+            while ($row = mysqli_fetch_array($user_profile_sql)) {
+                // $monthly_income=$row['monthly_income']*12;
         ?>
         
         <form method="post" id="upload_receipt" class="content" enctype="multipart/form-data" >
@@ -175,66 +200,74 @@
                             </div>
                         </div>
                     </div>
+                    <?php };?>
                 </div>
                 <div class="wrapper2 bg-white mt-sm-5">
-                    <h4 class="pb-4 border-bottom">Current Tax</h4>
+                    <h4 class="pb-4 border-bottom">Current Tax Based on payslip</h4>
 
+                    <?php 
+                        $query = "SELECT * FROM tax_calculator where user_id='$user_id'";
+                        $tax = mysqli_query($C, $query);
+                        while ($row_tax = mysqli_fetch_array($tax)) {
+                            // $monthly_income=$row['monthly_income']*12;
+                    ?>
                     <div class="py-2">
-                        <div class="row py-2">
+                    <div class="row py-2">
                             <div class="col-md-6">
                                 <label for="monthly-salary">Monthly Salary (RM)</label>
                                 
-                                <input type="number" class="bg-light form-control" placeholder="<?= $row['monthly_income'];?>" name="monthly-salary" id="monthly-salary" value="" onchange="annuallies(this.value);" min="0" >
+                                <input type="number" class="bg-light form-control" placeholder="" name="monthly_income" id="monthly_income" value="<?= $row_tax['month_income'];?>" onchange="annuallie(this.value);" min="0" >
                                 
                             </div>
                             <div class="col-md-6 pt-md-0 pt-3">
                                 <label for="annually">Annual Salary (RM)</label>
-                                <input type="number" class="bg-light form-control" placeholder="<?= $row['monthly_income']*12;?>" name="annually" id="annualli"   readonly>
+                                <input type="number" class="bg-light form-control" placeholder="" name="annually" id="annualli" value="<?= $row_tax['month_income']*12;?>"  readonly>
                             </div>
                         </div>
                         <div class="row py-2">
                             <div class="col-md-6">
                                 <label for="employee-epf">employee epf (RM)</label>
-                                <input type="number" class="bg-light form-control" placeholder="<?= $row['monthly_income']*0.09;?>" id="epfs" name="epfs" value="" readonly>
+                                <input type="number" class="bg-light form-control" placeholder="<?= $row_tax['epf'];?>" id="epf" name="epf" value="<?= $row_tax['epf'];?>"  >
                             </div>
                             <div class="col-md-6 pt-md-0 pt-3">
                                 <label for="socso">Socso (RM)</label>
-                                <input type="tel" class="bg-light form-control" placeholder="<?= $row['monthly_income']*0.22/100;?>" id="socso" readonly>
+                                <input type="tel" class="bg-light form-control" placeholder="<?= $row_tax['socso'];?>" id="socso" name="socso" value="<?= $row_tax['socso'];?>">
                             </div>
                         </div>
                         <div class="row py-2">
                             <div class="col-md-6">
-                                <label for="employee-epf">eis(-) (RM)</label>
-                                <input type="text" class="bg-light form-control" placeholder="<?= $row['monthly_income']*0.000878;?>" id="eis" readonly>
+                                <label for="employee-epf">PCB</label>
+                                <input type="text" class="bg-light form-control" placeholder="<?= $row_tax['pcb'];?>" id="pcb"  name="pcb" value="<?= $row_tax['pcb'];?>">
                             </div>
                             <div class="col-md-6 pt-md-0 pt-3">
                                 <label for="socso">Zakat</label>
-                                <input type="tel" class="bg-light form-control" placeholder="<?= $row['monthly_income']*0.014667;?>">
+                                <input type="tel" class="bg-light form-control" placeholder="<?= $row_tax['zakat'];?>" id="zakat" name="zakat" value="<?= $row_tax['zakat'];?>">
                             </div>
                         </div>
 
                         <div class="row py-2 border-bottom">
-                            <div class="col-md-6">
-                                <label for="employee-epf">Total Yearly Tax: (RM)</label>
-                                <input type="text" class="bg-light form-control" placeholder="<?= $row['yearly_tax'];?>"  id="chargeable_income_tax" name="chargeable_income_tax">
-                            </div>
-                            <!-- <div class="col-md-6 pt-md-0 pt-3">
-                                <label for="socso">Zakat</label>
-                                <input type="tel" class="bg-light form-control" placeholder="<?= $row['monthly_income']*0.014667;?>" >
-                            </div> -->
-                        </div>
 
+                            <div class="col-md-6 pt-md-0 pt-3">
+                                <label for="pcb">Total Yearly Tax: (RM)</label>
+                                <input type="tel" class="bg-light form-control" placeholder="<?= $row['current_tax'];?>"  id="" name="" value="<?= $row_tax['current_tax'];?>" readonly>
+                            </div>
+                            <!-- <div class="col-md-6">
+                                <label for="employee-epf">Total Yearly Tax: (RM)</label>
+                                <input type="text" class="bg-light form-control" placeholder=""  id="chargeable_income_tax" name="chargeable_income_tax">
+                            </div> -->
+
+                        </div>
+                        <?php };?>
                         <div class="py-3 pb-4">
                             <button class="btn btn-primary mr-3" type="submit" name="submit" value="Upload">Save Changes</button>
-                            <!-- <button class="btn border button">Cancel</button> -->
+                            
                         </div>
-
                     </div>
                 </div>
             </div>
         </form>
         
-        <?php };?>
+
         <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
         <script src="js/calculator.js"></script>
         <script >
@@ -250,12 +283,12 @@
                 document.getElementById('chargeable_income_tax').value = current_tax_amount;
 
             }
-            function epf(value){}
+           
 
             let current_tax_amount = tax_amount(<?=$monthly_income-9000?>);
             console.log(current_tax_amount);
             document.getElementById("annualli").innerHTML = monthly_salary*12;
-            document.getElementById("total_y_tax").value = current_tax_amount;
+            // document.getElementById("total_y_tax").value = current_tax_amount;
             
 
 
