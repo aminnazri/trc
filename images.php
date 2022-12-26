@@ -2,6 +2,7 @@
 require_once 'php/utils.php';
 require_once 'template/header.php'; 
 $folder = $_GET['f'];
+$year = $_GET['year'];
 // echo $folder;
 session_start();
 $user_id = $_SESSION['userID'];
@@ -17,11 +18,11 @@ else {
     echo '';
     
 }
-$sql = "SELECT * FROM images where user_id  =  $user_id  $condition ";
+$sql = "SELECT * FROM images where user_id  =  $user_id  $condition AND year=$year";
 $result = mysqli_query($C, $sql);
 
 ?>
-
+<a href="pagebaru.php?id=<?=$id?>"></a>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,8 +91,10 @@ $result = mysqli_query($C, $sql);
 				<div class="col">
             <div class="h-100 card">
                 <div class="img ">
-                  <img class="modal-content gallery-item img-fluid  card-img-top card-img h-50 w-10 rounded" alt="Gallery1" id="img0<?php echo $count?>" src="image_uploads/<?= $row['file_name'];?>">
+                  <!-- <a href="image_preview_details.php?image_id=<?= $row['image_id'];?>"> -->
+                    <img class="modal-content gallery-item img-fluid  card-img-top card-img h-50 w-10 rounded" alt="Gallery1" id="img0<?php echo $count?>" src="image_uploads/<?= $row['file_name'];?>">
 
+                  <!-- </a> -->
                 </div>
                 <div class="card-body">
                     <div class = "d-flex justify-content-between align-content-center">
@@ -127,15 +130,27 @@ $result = mysqli_query($C, $sql);
 	</section>
 
 <!-- Modal -->
-<div class="modal fade" id="gallery-popup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
+<div class="modal fade " id="gallery-popup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg ">
+    <div class="modal-content ">
       <!-- <div class="modal-header"> -->
         <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
         <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
       <!-- </div> -->
-      <div class="modal-body ">
+      <div class="modal-body c">
+        
         <img src="images/1.jpg" class="modal-img " alt="Modal Image">
+        <div class="image_details c">
+            <small>Tittle</small>
+            <h4 class="modal-tittle">amin fo sale</h4>
+            <small>Type</small>
+            <p class="modal-type">Education_Fees</p>
+            <small>Price</small>
+            <p class="modal-price">RM100</p>
+            <small>Description</small>
+            <p class="modal-price">12121212 fdsfaf as a</p>
+        </div>
+
       </div>
     </div>
   </div>
@@ -150,6 +165,7 @@ $result = mysqli_query($C, $sql);
     if(e.target.classList.contains("gallery-item")){
         const src = e.target.getAttribute("src");
         document.querySelector(".modal-img").src = src;
+        // document.querySelector(".modal-tittle").src = tittle;
         const myModal = new bootstrap.Modal(document.getElementById('gallery-popup'));
         myModal.show();
     }
@@ -163,6 +179,21 @@ $result = mysqli_query($C, $sql);
          showModal();
     });
 
+
+    let preveiwContainer = document.querySelector('.products-preview');
+    let previewBox = preveiwContainer.querySelectorAll('.preview');
+      document.querySelectorAll('.products-container .product').forEach(product =>{
+      product.onclick = () => {
+        preveiwContainer.style.display = 'flex';
+        let name = product.getAttribute('data-name');
+        previewBox.forEach(preview =>{
+          let target = preview.getAttribute('data-target');
+          if(name == target) {
+            preview.classList.add('active');
+        }
+        });
+      };
+    });
 
 
     /* When the user clicks on the button, 
