@@ -54,7 +54,7 @@ function child_abv_18(value){document.getElementById('child_abv_18_o').value = v
 function child_abv_18_dip(value){document.getElementById('child_abv_18_dip_o').value = value*8000;}
 function child_dis(value){document.getElementById('child_dis_o').value = value*6000;}
 function child_dis_abv_18_dip(value){document.getElementById('child_dis_abv_18_dip_o').value = value*14000;}
-
+function annually(value){document.getElementById('annualli').value = value*12;}
 
 
 function add(){
@@ -110,7 +110,7 @@ function tax_amount(taxable_income) {
         if (ci_sum[i]<=taxable_income) {
             index +=1;
             current_taxable_income = ci_sum[i];
-            console.log("flsd = ",current_taxable_income);
+            console.log("current tax amount = ",current_taxable_income);
         }
     }
 
@@ -119,6 +119,71 @@ function tax_amount(taxable_income) {
     let newtaxamount = last_ci_rate + taxamount;
     return newtaxamount;
 }
+
+function change_value(name, value) {
+    if (name == "husorwife_disable") {
+        if (value=="yes") {
+            document.getElementById("is_hus_wife_disabel").value = 5000;
+        }
+        else  {
+            document.getElementById("is_hus_wife_disabel").value = 0;
+        }
+    }
+    if (name == "husorwife_work") {
+        if (value=="yes") {
+            document.getElementById("is_work").value = 0;
+            $('#pay_former_wife').show();
+        }
+        else  {
+            document.getElementById("is_work").value = 4000;
+            $('#pay_former_wife').hide();
+        }
+    }
+    if (name == "child") {
+        let myStringArray  = ["#c", "#cd", "#l18", "#m18", "#ma18", "#dc", "#ndc", "#ndca", "#cedus", "#bfe", "#kind"]
+
+        if (value=="yes") {
+            for (let index = 0; index < myStringArray .length; index++) {
+                $(myStringArray[index]).show();
+                
+            }
+            $('#has_child').show();
+        }
+        else  {
+            for (let index = 0; index < myStringArray .length; index++) {
+                $(myStringArray[index]).hide();
+                
+            }
+            $('#has_child').hide();
+        }
+    }
+}
+
+
+
+$(document).ready(function () {
+    $('#marital_status').change(function () {
+        if (this.value == "single") {
+            $('#check_is_maried').hide();
+            $('#check_is_maried').hide();
+            $('#husorwife_work').hide();
+            $('#pay_former_wife').hide();
+            $('#has_child').hide();
+            $('#child').hide();
+        } else {
+            $('#check_is_maried').show();
+            $('#husorwife_work').show();
+            // $('#pay_former_wife').show();
+            $('#child').show();
+            $('#has_child').hide();
+        }
+
+    });
+});
+ 
+
+
+
 
 calculateBtn.addEventListener("click", () => {
     let Individual_Spouse_Relief = 9000;
@@ -132,12 +197,21 @@ calculateBtn.addEventListener("click", () => {
     console.log(Child_Relief,Parent_Relief,Other_Relief)
     let taxable_income = income.value - tax_deduction;
     console.log("taxable_income",taxable_income)
-    let output = tax_amount(taxable_income);
-
-    output = output - zakat.value - pcb.value;
     
-    console.log(output);
-    document.getElementById("output").innerHTML = output;
+    let current_tax_amount = tax_amount(taxable_income);
+    let taxable_should_pay = current_tax_amount - zakat.value - pcb.value;
+    
+    // console.log(output);
+
+    // print output in HTML
+    document.getElementById("Child_Relief").innerHTML = Child_Relief;
+    document.getElementById("Parent_Relief").innerHTML = Parent_Relief;
+    document.getElementById("Other_Relief").innerHTML = Other_Relief;
+    document.getElementById("zakat").innerHTML = zakat;
+    document.getElementById("Other_Relief").innerHTML = Other_Relief;
+    document.getElementById("taxable_income").innerHTML = taxable_income;
+    document.getElementById("tax_amount").innerHTML = current_tax_amount;
+    document.getElementById("taxable_should_pay").innerHTML = taxable_should_pay;
     // tax_amount(income.value);
     // console.log()
 });
@@ -145,3 +219,4 @@ calculateBtn.addEventListener("click", () => {
 $(document).ready(function () {
     $(".calculator").addClass("active");
 });
+
