@@ -21,6 +21,9 @@ if(isset($_POST['submit']))
     $tax_type = $_POST['tax_type'];
     $description = $_POST['description'];
     $receipt_date = $_POST['receipt_date'];
+    // $year = date_format($receipt_date, 'Y');
+    $parts = explode('-', $_POST['receipt_date']);
+    $year = $parts[0];
     $amount = $_POST['amount'];
 
     if (in_array($fileActualExt, $allowed)) {
@@ -46,7 +49,7 @@ if(isset($_POST['submit']))
                 move_uploaded_file($fileTmpName, $fileDestination);
                 
                 // Insert image file name into database
-                $query = "INSERT into images (tittle,category,description,file_name, receipt_date,uploaded_on,user_id,amount) VALUES ('$tittle','$tax_type','$description','$fileNameNew', '$receipt_date', NOW(), '$user_id','$amount')";
+                $query = "INSERT into images (tittle,category,description,file_name, receipt_date, YEAR,uploaded_on,user_id,amount) VALUES ('$tittle','$tax_type','$description','$fileNameNew', '$receipt_date', '$year', NOW(), '$user_id','$amount')";
                 $sql = sqlInsert($C, $query);
                 if($sql){
                     $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
