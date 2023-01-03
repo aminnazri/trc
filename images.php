@@ -1,6 +1,6 @@
 <?php
 require_once 'php/utils.php';
-require_once 'template/header.php'; 
+require_once 'template/header.php';
 $folder = $_GET['f'];
 $year = $_GET['year'];
 // echo $folder;
@@ -10,16 +10,20 @@ $C = connect();
 // echo $C;
 if ($_GET['f'] != 'all') {
     $condition = sprintf('AND category = "%s"', $folder);
-    // echo 'hai';
-}
-else {
+// echo 'hai';
+} else {
     // $condition = 'AND category = ';
     $condition ="";
     echo '';
-    
 }
 $sql = "SELECT * FROM images where user_id  =  $user_id  $condition AND year=$year";
 $result = mysqli_query($C, $sql);
+
+function delete($id)
+{
+    $sql = "DELETE FROM images WHERE image_id = $id";
+    $delete = mysqli_query($C, $sql);
+}
 
 ?>
 <a href="pagebaru.php?id=<?=$id?>"></a>
@@ -37,62 +41,28 @@ $result = mysqli_query($C, $sql);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <!-- <script src="../../dist/js/bootstrap.min.js"></script> -->
+    <!-- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet"  href ='css/images.scss'/>
     <title>Document</title>
 </head>
 <body>
-    <?php 
-        // $r = sqlDisplay($C,"SELECT * FROM images where user_id  = $user_id");
-        
-
-        // while ($row = mysqli_fetch_array($result)) {
-        //     echo "<div id='img_div'>";
-        //     echo "<img src='image_uploads/" . $row['file_name']."' style='width:10%;'>";
-        //     echo "<p>". $row [ 'tittle']."</p>";
-        //     echo "</div>";
-        // }
-    ?>
-
-    <!-- <div class="middle mt-6">
-        <div class="row row-cols-1 row-cols-md-4" >
-
-            <//?php $count = 0; while ($row = mysqli_fetch_array($result)) { $count++; ?>
-                <div class="col mb-4 gallery" id="content">
-                    <div class="h-100 card h-50 rounded " >
-                        <a href="">
-                    
-                            <div class="image text-center ">
-                                <img  class=" img-fluid w-100 card-img-top card-img h-50 rounded" src="image_uploads/<?= $row['file_name'];?>" alt="" style='' id="myImg">
-                                The Modal
-                                <div id="myModal" class="modal">
-                                <span class="close">&times;</span>
-                                <img class="modal-content gallery-item" id="img0<?php echo $count?>" src="image_uploads/<?= $row['file_name'];?>">
-                                <div id="caption"></div>
-                            </div>
-                            </div>
-                            
-                        </a>
-                
-                    </div>
-                    </div>
-            <//?php }?>
-        </div>
-        
-    </div> -->
-
-    <section class="gallery min-vh-100">
-		<div class="container-lg">
-			<div class="row gy-4  row-cols-1 row-cols-sm-2 row-cols-md-4">
-      <?php $count = 0; while ($row = mysqli_fetch_array($result)) { $count++; ?>
-				<div class="col">
+<div class="middle">
+<section class="gallery min-vh-100">
+    <div class="container-lg">
+      <div class="row gy-4  row-cols-1 row-cols-sm-2 row-cols-md-4">
+        <?php $count = 0;
+          while ($row = mysqli_fetch_array($result)) {
+            $folder = $_GET['f'];
+            $year = $_GET['year'];
+            $count++; ?>
+        <div class="col">
             <div class="h-100 card">
                 <div class="img ">
                   <!-- <a href="image_preview_details.php?image_id=<?= $row['image_id'];?>"> -->
-                    <img class="modal-content gallery-item img-fluid  card-img-top card-img h-50 w-10 rounded" alt="Gallery1" id="img0<?php echo $count?>" src="image_uploads/<?= $row['file_name'];?>">
+                    <img class="modal-content gallery-item img-fluid  card-img-top card-img h-50 w-10 rounded" alt="Gallery1" id="img0<?php echo $count?>" src="receipt_image/<?= $row['file_name'];?>" onclick="prints('receipt_image/<?=$row['file_name']?>','<?=$row['tittle'] ?>', '<?=$row['category'] ?>', '<?=$row['description'] ?>', '<?=$row['receipt_date'] ?>' , '<?=$row['amount'] ?>')">
 
                   <!-- </a> -->
                 </div>
@@ -104,9 +74,9 @@ $result = mysqli_query($C, $sql);
                         <div class="dropdown-container" tabindex="-1">
                           <div class="three-dots"></div>
                           <div class="dropdown">
-                            <a href="#"><div><i class='bx bx-pencil' ></i>Edit</div></a>
-                            <a href="#"><div><i class='bx bx-trash' ></i>Delete</div></a>
-                            
+                            <a href="edit_receipt.php?id=<?= $row['image_id'];?>"><div><i class='bx bx-pencil' ></i>Edit</div></a>
+                            <a href="delete.php?image_id=<?= $row['image_id']?>&f=<?=$folder?>&year=<?=$year?>"><div><i class='bx bx-trash' ></i>Delete</div></a>
+
                           </div>
                         </div>
                       </div>
@@ -120,14 +90,14 @@ $result = mysqli_query($C, $sql);
                     <!-- </div> -->
                 </div>
             </div>
-				</div>
+        </div>
 
-        <?php
-            }?>
+          <?php }?>
 
-			</div>
-		</div>
+      </div>
+    </div>
 	</section>
+</div>
 
 <!-- Modal -->
 <div class="modal fade " id="gallery-popup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -139,16 +109,22 @@ $result = mysqli_query($C, $sql);
       <!-- </div> -->
       <div class="modal-body c">
         
-        <img src="images/1.jpg" class="modal-img " alt="Modal Image">
-        <div class="image_details c">
+
+          <!-- <a href=""> -->
+            <img src="" class="modal-img" alt="Modal Image"id="modal-img">
+          <!-- </a> -->
+
+        <div class="image_details">
             <small>Tittle</small>
-            <h4 class="modal-tittle">amin fo sale</h4>
+            <h4 class="modal-tittle" id='modal-tittle'></h4>
             <small>Type</small>
-            <p class="modal-type">Education_Fees</p>
+            <p class="modal-type" id="modal-type">Education_Fees</p>
             <small>Price</small>
-            <p class="modal-price">RM100</p>
+            <p class="modal-price" id="modal-amount">RM100</p>
+            <small>Date</small>
+            <p class="modal-date" id="modal-date">RM100</p>
             <small>Description</small>
-            <p class="modal-price">12121212 fdsfaf as a</p>
+            <p class="modal-description" id="modal-description">12121212 fdsfaf as a</p>
         </div>
 
       </div>
@@ -179,21 +155,35 @@ $result = mysqli_query($C, $sql);
          showModal();
     });
 
+  var selectedContent =  {};
 
-    let preveiwContainer = document.querySelector('.products-preview');
-    let previewBox = preveiwContainer.querySelectorAll('.preview');
-      document.querySelectorAll('.products-container .product').forEach(product =>{
-      product.onclick = () => {
-        preveiwContainer.style.display = 'flex';
-        let name = product.getAttribute('data-name');
-        previewBox.forEach(preview =>{
-          let target = preview.getAttribute('data-target');
-          if(name == target) {
-            preview.classList.add('active');
-        }
-        });
-      };
-    });
+  function prints(image_path, title, category, description, receipt_date, amount){
+    // console.log(title, category, description, receipt_date, amount);
+    selectedContent = {image_path,title, category, description, receipt_date, amount};
+    console.log(selectedContent);
+    document.getElementById("modal-img").src = image_path;
+    document.getElementById("modal-tittle").innerHTML = title;
+    document.getElementById("modal-type").innerHTML = category;
+    document.getElementById("modal-description").innerHTML = description;
+    document.getElementById("modal-date").innerHTML = receipt_date;
+    document.getElementById("modal-amount").innerHTML = amount;
+    // document.getElementById('output').innerHTML = lengthOfName;
+  }
+
+    // let preveiwContainer = document.querySelector('.products-preview');
+    // let previewBox = preveiwContainer.querySelectorAll('.preview');
+    //   document.querySelectorAll('.products-container .product').forEach(product =>{
+    //   product.onclick = () => {
+    //     preveiwContainer.style.display = 'flex';
+    //     let name = product.getAttribute('data-name');
+    //     previewBox.forEach(preview =>{
+    //       let target = preview.getAttribute('data-target');
+    //       if(name == target) {
+    //         preview.classList.add('active');
+    //     }
+    //     });
+    //   };
+    // });
 
 
     /* When the user clicks on the button, 

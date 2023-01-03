@@ -1,5 +1,8 @@
 <?php
 require_once 'template/header.php'; 
+
+$result = $_GET['result'];
+
 ?>
 
 
@@ -14,7 +17,7 @@ require_once 'template/header.php';
     <link rel="stylesheet" href="css/upload_receipt.scss">
      <!-- bootstrap -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
         <!-- Font Awesome -->
@@ -27,18 +30,19 @@ require_once 'template/header.php';
     rel="stylesheet"
     />
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
-    <!-- Select2 CSS --> 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> 
-
     <!-- jQuery --> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
-    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+
     <!-- Select2 JS --> 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <!-- sweet alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 </head>
 <body>
     
@@ -57,13 +61,15 @@ require_once 'template/header.php';
                         
                         <div class="drag-area input_field col-sm-11"  >
                             <!-- <img src="" class="img " alt="" id="profile_image"> -->
-                            <div id="display_here"></div>
+                            <div id="display_here" class="display_here"></div>
                             <div class="icon" id="icon">
-                                <i class="fas fa-cloud-upload-alt" ></i>
+                                <!-- <i class="fas fa-cloud-upload-alt" ></i> -->
+                                
+                                <i class="fas fa-image"></i>
                             </div>
 
                             <div class="text" id="text">
-                                <p>Drop  file here</p> 
+                                <!-- <p>Drop  file here</p>  -->
                             </div>
                             
                         </div>
@@ -72,9 +78,10 @@ require_once 'template/header.php';
                         <label class="custom-file-label" for="customFileLangHTML" data-browse="Bestand kiezen"></label>
                         </div> -->
 
-                        <div class="mb-3 col-sm-11">
+                        <div class="mb-3 col-sm-11 upload_receipt_img">
                             <label for="formFile" class="form-label" type="file" ></label>
-                            <input class="form-control" type="file" id="formFile" name="file" required>
+                            <input class="form-control" type="file" id="formFile" name="file" accept="image/png, image/gif, image/jpeg" required>
+                            <small>Accepted file type .png .jpeg .jpg</small>
                         </div>
                     </div>
                     
@@ -140,9 +147,9 @@ require_once 'template/header.php';
                 </div>
 
                 <div class="py-3 pb-4 ">
-                    <button class="btn btn-primary " type="submit" name="submit">upload</button>
+                    <button class="btn btn-primary submit " type="submit" name="submit" id="submit" onsubmit="return submitForm(this);">upload</button>
                 </div>
-            </div>
+            <!-- </div><img id="loading_gif" src="loading.gif" /> -->
             
         </form>
         <section class="progress-area"></section>
@@ -158,14 +165,18 @@ require_once 'template/header.php';
         <input type="file" hidden>
     </div> -->
 
-  <script src="js/upload_receipt.js"></script>
+  <!-- <script src="js/upload_receipt.js"></script> -->
 <!-- MDB -->
 <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"
 ></script>
 <script>
-    $(document).ready(function(){
+
+$(document).ready(function () {
+    		$(".upload_receipt").addClass("active");
+		});
+   $(document).ready(function(){
  
     // Initialize select2
     $("#selUser").select2();
@@ -180,7 +191,7 @@ require_once 'template/header.php';
     });
     // $("#selboxChild").select2({ width: '10px', dropdownCssClass: "bigdrop" });
 
-    var $sel = $('#sel'); 
+        var $sel = $('#sel'); 
         $sel.find('option').hover(
             function(){
                 $sel.attr('title',$(this).attr('title'));
@@ -203,7 +214,7 @@ require_once 'template/header.php';
             // imgEl.src = e.target.result;
             var img = '<img src="' + e.target.result + '">';
     
-    output.innerHTML = img;
+            output.innerHTML = img;
             }
             reader.readAsDataURL(imgInput.files[0]);
             document.getElementById("text").style.display = "none";
@@ -214,6 +225,28 @@ require_once 'template/header.php';
         }
     })
 
+    // $("#submit").click(function()){
+    //     swal({
+    //         tittle: "Fields email",
+    //         text: "you clicked",
+    //         icon: "success"
+            
+    //     });
+    // }
+    function submitForm (form) {
+    swal({
+        title: "Are you sure?",
+        text: "This form will be submitted",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((isokay) => {
+        if (isokay) {
+            form.submit();
+        }
+    
+});return false;}
 
 </script>
 
@@ -240,11 +273,27 @@ require_once 'template/header.php';
     </script>
         <script type="text/javascript">
 		// var user = JSON.parse(document.getElementById('data').textContent);
-		$(document).ready(function () {
-    		$(".upload_receipt").addClass("active");
-		});
+
         document.title = 'Upload Receipt';
 	</script>
     <script src="script.js"></script>
+
+    <script type="text/javascript">
+
+        var url_string =location.href; 
+        var url = new URL(url_string);
+        var c = url.searchParams.get("result");
+        console.log(c);
+                if (c == "success") {
+                    swal({
+                title: "Receipt Uploaded",
+                // text: "This form will be submitted",
+                icon: "success",
+
+
+            })
+        }
+
+    </script>
 </body>
 </html>

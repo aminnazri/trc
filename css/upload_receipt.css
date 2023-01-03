@@ -10,7 +10,7 @@ body{
   /* height: 100%; */
   /* background: #122b5f; */
   /* background: #747474; */
-
+  overflow: hidden;
   padding: 0;
 
 }
@@ -21,8 +21,9 @@ body{
   justify-content: center; */
   /* margin-top: 70px; */
   background-color: #edf2fc;
-margin-bottom: 5px;
-min-height:100vh;
+  margin-bottom: 5px;
+  
+  min-height:100vh;
 }
 .main{
   
@@ -102,7 +103,9 @@ form :where(i, p){
   color: #6990F2;
 }
 form i{
-  font-size: 50px;
+  font-size: 100px;
+  color: white;
+  
 }
 form p{
   margin-top: 15px;
@@ -186,17 +189,28 @@ section .details span{
   /* border: 2px dashed #fff; */
   /* height: 500px; */
   height: 200px;
-  width: 350px;
+  /* width: 3500px; */
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #FCFFD8;
-  border: 1px dashed rgb(70, 70, 70);
-  /* margin: 10px; */
+  background-color: #fff;
+  border: 2px solid rgba(70, 70, 70, 0.298);
+
+  padding: 10px;
   overflow: hidden;
   
+}
+
+.icon{
+  width: 310px;
+  height: 200px;
+  border-radius: 10px;
+  background-color: #fbd185;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -250,7 +264,10 @@ section .details span{
   /* box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.096); */
 }
 
-
+.upload_receipt_img p{
+  color: #40404081;
+  font-size: 1em;
+}
 
 .drag-area img{
   height: 100%;
@@ -281,14 +298,38 @@ section .details span{
   /* background: whitesmoke; */
   /* border: 1px solid gainsboro; */
   width: 320px;
-  height: 180px;
+  background-color: red;
+  /* height: 180px; */
   overflow: hidden;
 }
+
+
 #display_here img {
   /* height: 80%;
   width : 80%; */
-  object-fit:fill;
+  /* object-fit:fill; */
 
 }
 
+@media(max-width:600px){
 
+  body{
+    overflow: scroll;
+  }
+  .content{
+    display: flex;
+    flex-direction: column;
+  }
+  .wrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+   
+  }
+
+  .drag-area{
+    display: flex;
+    width: 300px;
+  }
+
+}

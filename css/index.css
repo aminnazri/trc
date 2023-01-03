@@ -12,31 +12,56 @@
  --error: #e74c3c;
  --highlight: rgba(255,255,255,.05);
  --bs-font-sans-serif: Poppins;
+ --width1: 450px;
+ /* --border-color:var(--dull); */
 }
 
 body {
 
 	font-family: poppins;
 	/* height: 100vh; */
-	width: 100%;
+	/* width: 100%; */
 	background: var(--background);
 	/* color: var(--color); */
 	padding:   0;
 	overflow: hidden;
 }
 .middle{
-    display:flex;
-    margin-left:80px;
-    margin-right:80px;
-    background-color: #fff;
-    margin-top: 15px;
-    border-radius: 30px;
-	margin-bottom: 5px;
+  display:flex;
+  /* justify-content: space-around; */
+  /* flex-direction: column; */
+  margin-left:80px;
+  margin-right:80px;
+  background-color: #fff;
+  /* margin-top: 15px; */
+  border-radius: 30px;
+	/* margin-bottom: 5px; */
 	width: 90%;
 	height: 85vh;
 	position: fixed;
-	overflow-y: scroll;
-	padding: 20px 100px;
+	/* overflow-y: scroll; */
+	padding: 20px 10px;
+  
+
+}
+
+.filter{
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  border-radius: 20px;
+  /* display: none; */
+}
+
+.select{
+  /* margin-top: 19px; */
+  height: 40px;
+  width: 70px;
+  border-radius: 20px;
+  border-color: #737373;
+  border: 2px solid rgba(0,0,0,2);
+  border-color: rgb(219, 218, 218);
+  cursor:pointer;
 }
 
 body ::-webkit-scrollbar-track {
@@ -45,14 +70,96 @@ body ::-webkit-scrollbar-track {
 	margin-top: 20px;
     margin-bottom: 20px;
 	background: rgb(255, 255, 255); 
+  background: rgba(58, 88, 107, 0.1);
   }
 body  ::-webkit-scrollbar-thumb {
 	background: rgb(189, 189, 189); 
 	border-radius: 10px;
 }
 
+
+.tax_amount{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+  border: solid 2px rgba(0, 0, 0, 0.212);
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  height: 280px;
+  width: 400px;
+  /* box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.267); */
+}
+
+.tax_amount .center{
+  display: flex;
+  float: left;
+  flex-direction: column;
+  justify-content:left;
+}
+
+.tax_amount:hover{
+  box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.267);
+  transition: 0.5s;
+}
+
+.upload_receipts:hover{
+  box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.267);
+  transition: 0.5s;
+}
+
+.upload_receipts{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 20px;
+  margin-top: 20px;
+  border: solid 2px rgba(0, 0, 0, 0.212);
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  height: 240px;
+  width: 400px;
+
+  /* box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.267); */
+}
+
+.upload_receipt .center{
+  display: flex;
+  /* float: left; */
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  /* justify-content:left; */
+}
+
+.icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 328px;
+  height: 150px;
+  border-radius: 20px;
+  background-color: #fff099;
+  color: rgb(61, 61, 61);
+}
+.texts{
+  margin-top: 20px;
+  text-align: center;
+  color: black;
+}
+
+.icon_button{
+  font-size: 5rem;
+}
 .bottom{
-	margin-bottom: 20px;
+	margin-bottom: 2px;
+  /* display: flex; */
+  /* flex-direction: column-reverse; */
+  /* background-color: red; */
+  
 }
 
 /* span {
@@ -70,24 +177,25 @@ body  ::-webkit-scrollbar-thumb {
 }
 
 .progress *:not([data-progress]) {
-  margin: 5px 0;
+  margin: 1px 0;
   font-size: 14px;
 }
 
 .progress {
   width: 100%;
-  /* max-width: 500px; */
-  height: 350px;
+  max-width: var(--width1);
+  height: 280px;
   padding: 15px;
   box-sizing: border-box;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
-  width: 600px;
+  /* width: 600px; */
   padding: 20px;
   border-radius: 20px;
-  border: solid 3px rgba(54, 162, 235, 1);
+	border: solid 2px var(--border-color);
   background: white;
   overflow-y: scroll;
+  background: rgba(58, 88, 107, 0.075);
 }
 
 .progress [data-progress] {
@@ -106,7 +214,8 @@ body  ::-webkit-scrollbar-thumb {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background-image: linear-gradient(#99caff, #1a88ff 50%, #007bff 50%);
+  background-image: linear-gradient(#0062ca, #0062ca 50%, #0062ca 50%);
+  /* background-image: blue; */
   width: 0;
   height: 100%;
   box-sizing: border-box;
@@ -138,17 +247,22 @@ body  ::-webkit-scrollbar-thumb {
   .chartCard {
 	/* width: 100vw; */
 	/* height: calc(100vh - 40px); */
-	background: rgba(58, 88, 107, 0.2);
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
+  margin-top: 20px;
   }
   .chartBox {
-	width: 600px;
+	width: var(--width1);
 	padding: 20px;
+  /* margin-top: 30px; */
 	border-radius: 20px;
-	border: solid 3px rgba(54, 162, 235, 1);
+	border: solid 2px var(--border-color);
 	background: white;
+  /* background: rgba(58, 88, 107, 0.1); */
+  background: rgba(58, 88, 107, 0.075);
+
   }
 
 

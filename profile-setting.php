@@ -109,6 +109,8 @@
 
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
         <link rel="stylesheet"  href ='css/profile-setting.css'/>
+        <!-- sweet alert -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
     <body className='snippet-bodys '>
     
@@ -225,7 +227,7 @@
                         </div>
 
                         <div class="py-3 pb-4">
-                            <button class="btn btn-primary mr-3" type="submit" name="submit" value="Upload">Save Changes</button>
+                            <button class="btn btn-primary mr-3" type="submit" id="submit" name="submit" value="Upload">Save Changes</button>
                             <!-- <button class="btn border button">Cancel</button> -->
                         </div>
 
@@ -277,7 +279,16 @@
             document.title = 'Profile Setting';
 
 
-
+            $("#submit").click(function () {
+  
+                    swal ({
+                    title: "Fields Empty!!",
+                    text: "Please check the missing field!!",
+                    icon: "warning",
+                    button: "Ok",
+                    });
+                    alert("amin");
+            });
         </script>
                             
     </body>

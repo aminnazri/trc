@@ -15,17 +15,20 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title></title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./css/bootstrap/css/bootstrap.css">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- iconify -->
     <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
     <!-- boxicons -->
-    <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+    <!-- <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'> -->
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <!-- <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet'> -->
     <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <link rel="stylesheet"  href ='../css/header.css'/>
+    
     <style></style>
 </head>
 <body className='snippet-body'>
@@ -54,8 +57,9 @@
                 <small><?=$row['id']?></small>
             </div>
             <div class="header_img"> 
-                <a href="profile-setting2.php"><img src="../image/profile_image/<?=$profile_pic?>" alt=""> </a>
-
+                
+                <!-- <span class="tooltiptext">Profile setting</span> -->
+                <i href="#" data-bs-toggle="tooltip" data-bs-placement="top"  title="Profile Setting"><span><a href="profile-setting2.php"><img src="../image/profile_image/<?=$profile_pic?>" alt=""> </a></i>
             </div>
             <?php };?>
         </div>
@@ -85,12 +89,12 @@
                     </a> 
                     <a href="../folder.php" class="nav_link folders"> 
                         <i class='bx bx-folder nav_icon'></i> 
-                        <span class="nav_name">Files</span> 
+                        <span class="nav_name">Folders</span> 
                     </a> 
-                    <a href="../folders.php" class="nav_link"> 
+                    <!-- <a href="../folders.php" class="nav_link"> 
                         <i class='bx bx-bar-chart-alt-2 nav_icon'></i> 
                         <span class="nav_name">Stats</span> 
-                    </a> 
+                    </a>  -->
                 </div>
             </div> 
             <a  onclick="logout();" class="nav_link" class="btn"> 

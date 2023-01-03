@@ -47,16 +47,13 @@
         $current_tax = $_POST['current_tax'];
         $yearly_tax = $_POST['chargeable_income_tax'];
 
-
-
-
-        $taxable_income = $monthly_salary*12 - $epf - $socso -9000;
+        $taxable_income = $monthly_salary*12 - $epf - $socso - 9000;
         $tax_amount =  tax_amount($taxable_income)-$zakat-$pcb;
 
         if(!empty($_FILES["file"]["name"])){
             
             // Allow certain file formats
-            $allowTypes = array('jpg','png','jpeg','gif','pdf');
+            $allowTypes = array('jpg','png','jpeg','gif','pdf','JPG');
             if(in_array($fileType, $allowTypes)){
                 // Upload file to server
                 if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
@@ -66,6 +63,9 @@
                     // $query = "profile_image (id,picture_name) VALUES ('1','$fileName') ";
                     // $sql = sqlInsert($C, $query);
                     if($insert){
+                        header("Location: profile-setting");
+                        echo "<script> location.href='profile-setting2?result=success'; </script>";
+
                         $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
                     }else{
                         $statusMsg = "File upload failed, please try again.";
@@ -81,6 +81,8 @@
             $insert = $C->query("UPDATE users SET name='$first_name', last_name='$last_name'  where id='$user_id'");
             $insert2 = $C->query("UPDATE tax_calculator SET month_income='$monthly_salary', epf='$epf', socso='$socso',  pcb='$pcb',  zakat='$zakat', current_tax='$tax_amount'  where user_id='$user_id'");
             if($insert2){
+
+                echo "<script> location.href='profile-setting2?result=success'; </script>";
                 $statusMsg = "The file has been uploaded successfully.";
             }else{
                 $statusMsg = "File upload failed, please try again.";
@@ -95,7 +97,9 @@
             // $query = "profile_image (id,picture_name) VALUES ('1','$fileName') ";
             // $sql = sqlInsert($C, $query);
             if($insert){
+                
                 $statusMsg = "The file has been uploaded successfully.";
+                
             }else{
                 $statusMsg = "File upload failed, please try again.";
             }
@@ -128,11 +132,12 @@
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <title>Snippet - BBBootstrap</title>
-        <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
+        <!-- <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'> -->
         <link href='#' rel='stylesheet'>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-
-        <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+        <!-- <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script> -->
         <link rel="stylesheet"  href ='css/profile-setting.css'/>
 </head>
     <body className='snippet-bodys '>
@@ -192,11 +197,12 @@
                         </div> -->
                         <div class="d-sm-flex align-items-center pt-3" id="deactivate">
                             <div>
-                                <b>Deactivate your account</b>
-                                <p>Details about your company account and password</p>
+                                <b>Delete your account</b>
+                                <p></p>
                             </div>
                             <div class="ml-auto">
-                                <button class="btn danger">Deactivate</button>
+                                
+                                <button class="btn danger" onclick="deleteAccount();">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -259,7 +265,7 @@
                         </div>
                         <?php };?>
                         <div class="py-3 pb-4">
-                            <button class="btn btn-primary mr-3" type="submit" name="submit" value="Upload">Save Changes</button>
+                            <button class="btn btn-primary mr-3" id="submit" type="submit" name="submit" value="Upload">Save Changes</button>
                             
                         </div>
                     </div>
@@ -268,10 +274,10 @@
         </form>
         
 
-        <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+
         <script src="js/calculator.js"></script>
         <script >
-            
+
             var monthly_salary = document.querySelector("#monthly_salary");
             function annuallies(value){
                 document.getElementById('annualli').value = value*12;
@@ -308,7 +314,19 @@
                 }
             })
             document.title = 'Profile Setting';
+            var url_string =location.href; 
+            var url = new URL(url_string);
+            var c = url.searchParams.get("result");
+            console.log(c);
+                    if (c == "success") {
+                        swal({
+                    title: "Profile Updated",
+                    // text: "This form will be submitted",
+                    icon: "success",
 
+
+                })
+            }
 
 
         </script>

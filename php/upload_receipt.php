@@ -7,6 +7,8 @@ $C = connect();
 if(isset($_POST['submit']))
 {
     
+
+    
     $fileName = $_FILES['file']['name'];
     $fileTmpName = $_FILES['file']['tmp_name'];
     $fileSize = $_FILES['file']['size'];
@@ -30,7 +32,7 @@ if(isset($_POST['submit']))
         if ($fileError===0) {
             if ($fileSize < 10000000000) {
                 $fileNameNew = uniqid('', true).".".$fileActualExt;
-                $fileDestination = '../image_uploads/'.$fileNameNew;
+                $fileDestination = '../receipt_image/'.$fileNameNew;
                 
                 // Compress size and upload image 
                 // $compressedImage = compressImage($fileTmpName, $fileDestination, 75); 
@@ -52,9 +54,9 @@ if(isset($_POST['submit']))
                 $query = "INSERT into images (tittle,category,description,file_name, receipt_date, YEAR,uploaded_on,user_id,amount) VALUES ('$tittle','$tax_type','$description','$fileNameNew', '$receipt_date', '$year', NOW(), '$user_id','$amount')";
                 $sql = sqlInsert($C, $query);
                 if($sql){
-                    $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
+                    $statusMsg  = "The file ".$fileName. " has been uploaded successfully.";
                     echo '<script type="text/javascript">  { alert("File uploaded"); } </script>';
-                    header('Location: ../upload_receipt.php');
+                    header('Location: ../upload_receipt.php?result=success');
                 }else{
                     $statusMsg = "File upload failed, please try again.";
                 } 

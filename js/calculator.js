@@ -180,6 +180,10 @@ $(document).ready(function () {
 
     });
 });
+
+document.getElementById("button").onclick = function() {
+    document.getElementById("output_table").style.display = "block";
+}
  
 
 
@@ -200,18 +204,22 @@ calculateBtn.addEventListener("click", () => {
     
     let current_tax_amount = tax_amount(taxable_income);
     let taxable_should_pay = current_tax_amount - zakat.value - pcb.value;
-    
+    let tax_rate = (taxable_should_pay/taxable_income )*100;
     // console.log(output);
 
     // print output in HTML
     document.getElementById("Child_Relief").innerHTML = Child_Relief;
     document.getElementById("Parent_Relief").innerHTML = Parent_Relief;
     document.getElementById("Other_Relief").innerHTML = Other_Relief;
-    document.getElementById("zakat").innerHTML = zakat;
+    document.getElementById("zakats").innerHTML = zakat.value;
+    console.log(zakat.value);
     document.getElementById("Other_Relief").innerHTML = Other_Relief;
     document.getElementById("taxable_income").innerHTML = taxable_income;
     document.getElementById("tax_amount").innerHTML = current_tax_amount;
     document.getElementById("taxable_should_pay").innerHTML = taxable_should_pay;
+    document.getElementById("tax_deduction").innerHTML = tax_deduction;
+    document.getElementById("tax_rate").innerHTML = Number(tax_rate.toFixed(2));
+
     // tax_amount(income.value);
     // console.log()
 });

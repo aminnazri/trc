@@ -1,27 +1,34 @@
 <?php
-$year = "2022";
+$year = "2023";
 
 if ($_GET['year'] != null) {
     $year = $_GET['year'];
 }
 
 $parent_medical = get_sum('parent_medical',$year); //8000
+
 $edu_fees = get_sum('education_fees',$year); //7000;
+
 $med_expenses = get_sum('medical_expenses',$year); //8000;
-$edu_med_ins = get_sum('edu_med_ins',$year); //3000;
+// 
 $lifestyle = get_sum('lifestyle',$year); //2500;
-$lifestyle_add = get_sum('lifestyle_add',$year); //2500;
+$lifestyle_addition = get_sum('lifestyle_addition',$year); //2500;
 $lifestyle_sport = get_sum('lifestyle_sport',$year); //500;
-$travel = get_sum('travel',$year); //1000;
+$lifestyle_travel = get_sum('lifestyle_travel',$year); //1000;
+
 $breast_feeding = get_sum('breast_feeding',$year); //1000
 $childcare_fees = get_sum('childcare_fees',$year); //3000
-$life_insurance_epf = get_sum('life_insurance_epf',$year); //7000;
 $sspn = get_sum('sspn',$year); //8000;
 
-$support_equipment = get_sum('s_e',$year); //6000;
-$socso = get_sum('socso',$year); //250;
-$pcb = get_sum('pcb',$year); //1000;
-$zakat = get_sum('zakat',$year); //1000;
+$life_insurance_epf = get_sum('life_insurance_epf',$year); //7000;
+$edu_med_ins = get_sum('edu_med_ins',$year); //3000;
+
+$equipment_disable = get_sum('equipment_disable',$year); //3000;
+
+// $support_equipment = get_sum('s_e',$year); //6000;
+// $socso = get_sum('socso',$year); //250;
+// $pcb = get_sum('pcb',$year); //1000;
+// $zakat = get_sum('zakat',$year); //1000;
 
 
 function get_sum($category, $year){
