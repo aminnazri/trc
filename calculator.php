@@ -16,17 +16,18 @@ require_once 'template/header.php';
 </head>
 <body >
 
-    <main class="d-flex justify-content-center">
+    <main class="">
         <section class="  flex-column container mt-3 p-5 mb-3 bg-white  ">
             
-            <table class="table mt-3 table-borderless ">
-                <form action="" id="calculator_form" >
+            <table class="table table_1 mt-3 table-borderless rounded rounded-6 overflow-hidden ">
+                <!-- <form id="calculator_form" > -->
+                    <div class="form">
                     <div class="income_details">
                         <!-- <label class="control-label" for="income">income</label>
                         <input type="number" id="income" placeholder="income" max=500 min="0" value="0"> -->
 
                         <tr>
-                            <td colspan="5" class="bg-danger"><h4  >income</h4></td>
+                            <td colspan="5" class=""><h4  >income</h4></td>
 
                         </tr>
                         <tr>
@@ -34,25 +35,25 @@ require_once 'template/header.php';
                             <td></td>
                             <td></td>
                             <td class="rm">RM</td>
-                            <td class="col-md-2"><input class="form-control input-sm " type="number" id="income" placeholder="income" max=500 min="0"  required></td>
+                            <td class="col-md-2"><input class="form-control input-sm " type="number" id="income" placeholder="income" required></td>
                         </tr>
                     </div>
                     <div class="Tax_Relief_Details">
                         <tr style="display:show">
-                            <td colspan="5" class="bg-info"><h4>Tax Relief Details</h4></td>
+                            <td colspan="5" class=""><h4>Tax Relief Details</h4></td>
 
                         </tr>
                         <tr>
                             <td>Are you disabled?</td>
                             <td>   
-                                <div class="btn-group  col-sm-8 disable">
+                                <div class="btn-group  col-sm-9 disable">
                                 <!-- <input class="form-check-input" type="radio" name="yes_no" value="yes">Yes</input> <input type="radio" name="yes_no" value="no">No</input> -->
                                 
                                     <input type="radio" class="btn-check" name="disable" id="disable_y" autocomplete="off" value="yes" />
-                                    <label class="btn btn-success" for="disable_y">Yes</label>
+                                    <label class="btn btn-custom" for="disable_y">Yes</label>
 
                                     <input type="radio" class="btn-check" name="disable" id="disable_n" autocomplete="off" value="no"/>
-                                    <label class="btn btn-success" for="disable_n">No</label>
+                                    <label class="btn btn-custom" for="disable_n">No</label>
                                 </div>
                             </td>
                             <td></td>
@@ -62,14 +63,14 @@ require_once 'template/header.php';
                         <tr>
                             <td>Marital Status</td>
                             <td>
-                                <select  class="form-control dropdown-toggle form-control-inline" id="marital_status">
+                                <select  class="form-control  form-control-inline input-sm" id="marital_status">
 
                                 <!-- <select id="marital_status" > -->
                                     <option value="single">single</option>
                                     <option value="maried">maried</option>
                                     <option value="divorce">divorce</option>
                                 </select>
-                                <div class="dropdown">
+                                
                             </td>
                             <td></td>
                             <td>RM</td>
@@ -80,14 +81,14 @@ require_once 'template/header.php';
                                 <td>Is your husband / wife disabled?</td>
                                 <td>
                                     <!-- <input type="radio" name="is_hus_wife_disable" value="yes">Yes</input>  <input type="radio" name="is_hus_wife_disable" value="no">No</input>  -->
-                                    <div class="btn-group col-sm-8">
+                                    <div class="btn-group col-sm-9">
                                     <!-- <input class="form-check-input" type="radio" name="yes_no" value="yes">Yes</input> <input type="radio" name="yes_no" value="no">No</input> -->
                                     
                                         <input type="radio" class="btn-check" name="husorwife_disable" id="husorwife_disable_y" autocomplete="off"   value="yes" onclick="change_value(this.name, this.value)"/>
-                                        <label class="btn btn-success" for="husorwife_disable_y">Yes</label>
+                                        <label class="btn btn-custom" for="husorwife_disable_y">Yes</label>
 
                                         <input type="radio" class="btn-check" name="husorwife_disable" id="husorwife_disable_n" autocomplete="off" value="no" onclick="change_value(this.name, this.value)"/>
-                                        <label class="btn btn-success" for="husorwife_disable_n">No</label>
+                                        <label class="btn btn-custom" for="husorwife_disable_n">No</label>
                                     </div>
                                 </td>
                                 <td> </td>
@@ -98,14 +99,14 @@ require_once 'template/header.php';
                                 <td>Is your husband / wife working?</td>
                                 <td>
                                     <!-- <input type="radio" name="is_hus_wife_work" value="yes">Yes</input><input type="radio" name="is_hus_wife_work" value="no">No</input>    -->
-                                    <div class="btn-group col-sm-8">
+                                    <div class="btn-group col-sm-9">
                                     <!-- <input class="form-check-input" type="radio" name="yes_no" value="yes">Yes</input> <input type="radio" name="yes_no" value="no">No</input> -->
                                     
                                         <input type="radio" class="btn-check" name="husorwife_work" id="husorwife_work_y" autocomplete="off"  value="yes" onclick="change_value(this.name, this.value)"/>
-                                        <label class="btn btn-success" for="husorwife_work_y">Yes</label>
+                                        <label class="btn btn-custom" for="husorwife_work_y">Yes</label>
 
                                         <input type="radio" class="btn-check" name="husorwife_work" id="husorwife_work_n" autocomplete="off" value="no" onclick="change_value(this.name, this.value)"/>
-                                        <label class="btn btn-success" for="husorwife_work_n">No</label>
+                                        <label class="btn btn-custom" for="husorwife_work_n">No</label>
                                     </div>
                                 </td>
                                 <td> </td>
@@ -123,14 +124,14 @@ require_once 'template/header.php';
                                 <td>Do you have child?</td>
                                 <td>
                                     <!-- <input type="radio" name="have_child" value="yes">Yes</input>  <input type="radio" name="have_child" value="no">No</input>   -->
-                                    <div class="btn-group col-sm-8">
+                                    <div class="btn-group col-sm-9">
                                     <!-- <input class="form-check-input" type="radio" name="yes_no" value="yes">Yes</input> <input type="radio" name="yes_no" value="no">No</input> -->
                                     
                                         <input type="radio" class="btn-check" name="child" id="child_y" autocomplete="off" value="yes"  onclick="change_value(this.name, this.value)"/>
-                                        <label class="btn btn-success" for="child_y">Yes</label>
+                                        <label class="btn btn-custom" for="child_y">Yes</label>
 
                                         <input type="radio" class="btn-check" name="child" id="child_n" autocomplete="off" value="no"onclick="change_value(this.name, this.value)" selected/>
-                                        <label class="btn btn-success" for="child_n">No</label>
+                                        <label class="btn btn-custom" for="child_n">No</label>
                                     </div>
                                 </td>
                                 <td></td>
@@ -142,7 +143,7 @@ require_once 'template/header.php';
 
                     <!-- <div class="child_details" id="has_child"> -->
                         <tr id = "c">
-                            <td colspan="5" class="bg-danger"><h4>CHILD DETAILS</h4></td>
+                            <td colspan="5" class=""><h4>CHILD DETAILS</h4></td>
 
                         </tr>
                         <tr  id="cd">
@@ -221,7 +222,7 @@ require_once 'template/header.php';
                     <!-- </div> -->
                     <div class="parent_details">
                         <tr>
-                            <td colspan="5" class="bg-danger"><h4>Parent Details</h4></td>
+                            <td colspan="5" class=" "><h4>Parent Details</h4></td>
 
                         </tr>
                         <tr>
@@ -236,7 +237,7 @@ require_once 'template/header.php';
 
                     <div class="other_details">
                         <tr>
-                            <td colspan="5" class="bg-danger"><h4>Other Details</h4></td>
+                            <td colspan="5" class=" "><h4>Other Details</h4></td>
 
                         </tr>
                         <tr>
@@ -337,36 +338,45 @@ require_once 'template/header.php';
                             <td>RM</td>
                             <td><input class="form-control" type="number" id="zakat" placeholder="" min="0" value=0></td>
                         </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                     </div>    
                     
-                    </table>
-                    <button class="calculate-btn" type="submit" >calculate</button>
-                </form>
+                    </table>                    
+                    <div class="button">                    
+                        <button class="btn calculate-btn" type="submit" id="button"><a href="tax_output"></a> calculate</button>
+                    </div>
+                    </div><!-- </form> -->
 
 
-            <div class="output">
+            <div class="output" style="display:none" id="output_table">
                 <table classs="table mt-3 table-borderless  p-5">
                     <tr>
-                        <td>Income Tax Summary 2021</td>
+                        <td colspan="5" >Income Tax Summary </td>
                     </tr>
                     <tr>
                         <td>Tax Deductions</td>
-                        <td></td>
+                        <td ><h4 id="tax_deduction"></h4></td>
                     </tr>
                     <tr>
-                        <td>Individual / Spouse Relief</td>
+                        <td><small style="margin-left:10px">Individual / Spouse Relief</small></td>
                         <td><small>9000</small></td>
                     </tr>
                     <tr>
-                        <td><small>Child Relief</small></td>
+                        <td><small style="margin-left:10px">Child Relief</small></td>
                         <td><small id="Child_Relief"></small></td>
                     </tr>
                     <tr>
-                        <td><small>Parent Relief</small></td>
+                        <td><small style="margin-left:10px">Parent Relief</small></td>
                         <td><small id="Parent_Relief"></small></td>
                     </tr>
                     <tr>
-                        <td><small>Other Relief</small></td>
+                        <td><small style="margin-left:10px">Other Relief</small></td>
                         <td><small id="Other_Relief"></small></td>
                     </tr>
                     <tr>
@@ -375,11 +385,11 @@ require_once 'template/header.php';
                     </tr>
                     <tr>
                         <td><b>Tax amount</b></td>
-                        <td><b id="tax_amount">9000</b></td>
+                        <td><b id="tax_amount">0</b></td>
                     </tr>
                     <tr>
                         <td>less Zakat</td>
-                        <td><small id="zakat">0</small></td>
+                        <td><small id="zakats">0</small></td>
                     </tr>
                     <!-- <tr>
                         <td>Less Tax Rebate</td>
@@ -389,11 +399,13 @@ require_once 'template/header.php';
                         <td><b>Tax You Should Pay</b></td>
                         <td><b>RM </b><b id="taxable_should_pay">0</b></td>
                     </tr>                
-                    <tr>
+                    <tr><a id="tax_output"></a>
                         <td><small>Average Tax Rate</small></td>
-                        <td><small>9000</small></td>
+                        <td><small id="tax_rate"></small><small>%</small></td>
                     </tr>
+                    
                 </table>
+
             </div>
         </section>
 
@@ -401,16 +413,16 @@ require_once 'template/header.php';
 
     <div class="output" id="output">total tax</div>
     <script src="js/calculator.js">
-$(document).ready(function () {
-    $('#marital_status').change(function () {
-        if (this.value == "single") {
-            $('#check_is_maried').show();
-        } else {
-            $('#check_is_maried').hide();
-        }
+        $(document).ready(function () {
+            $('#marital_status').change(function () {
+                if (this.value == "single") {
+                    $('#check_is_maried').show();
+                } else {
+                    $('#check_is_maried').hide();
+                }
 
-    });
-});
+            });
+        });
     </script>
     <script></script>
 </body>
