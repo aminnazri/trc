@@ -1,7 +1,11 @@
 <?php
 	require_once 'utils.php';
 	
-	if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['csrf_token']) && validateToken($_POST['csrf_token'])) {
+	if (empty($_POST['email']) || empty(($_POST['password']))) {
+		echo 5;
+	}
+
+	else if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['csrf_token']) && validateToken($_POST['csrf_token'])) {
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 
@@ -17,6 +21,7 @@
 							// Log user in
 							$_SESSION['loggedin'] = true;
 							$_SESSION['userID'] = $user['id'];
+							setcookie('remember_me', $token, $expiration);
 							sqlUpdate($C, 'DELETE FROM loginattempts WHERE user=?', 'i', $user['id']);
 							echo 0;
 						}
@@ -50,5 +55,5 @@
 		}
 	}
 	else {
-		echo 1;
+		echo 5;
 	}
