@@ -30,7 +30,7 @@
 		global $user_id,$C;
 
 		$sql = "SELECT (SUM(amount)) AS total 
-		FROM images 
+		FROM receipts 
 		WHERE user_id='$user_id' AND YEAR ='$year'";
 
 		$conn = $C->query($sql);

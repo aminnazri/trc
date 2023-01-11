@@ -23,7 +23,7 @@ body {
 	/* width: 100%; */
 	background: var(--background);
 	/* color: var(--color); */
-	padding:   0;
+	/* padding:   0; */
 	overflow: hidden;
 }
 .middle{
@@ -36,9 +36,10 @@ body {
   /* margin-top: 15px; */
   border-radius: 30px;
 	/* margin-bottom: 5px; */
-	width: 90%;
+	width: 88%;
 	height: 85vh;
 	position: fixed;
+  margin-top: -20px;
 	/* overflow-y: scroll; */
 	padding: 20px 10px;
   

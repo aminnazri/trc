@@ -6,12 +6,16 @@
     session_start();
     $user_id = $_SESSION['userID'];
     $C = connect();
-
+    if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+		header("Location: login");
+		exit;
+	}
 
 ?>
 
 <html>
 <head>
+    <meta name="csrf_token" content="<?php echo createToken(); ?>" />
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title></title>
@@ -34,8 +38,8 @@
 <body className='snippet-body'>
 <body id="body-pd" class="">
     <header class="header " id="header">
-        <a href="#" class="nav_logo"> 
-                <i class='bx bx-layer nav_logo-icon'></i> 
+        <a href="#" class="nav_logo" style="display:flex;align-item:center;"> 
+                <i class=''><img src="./image/folder4.png" style="width:50px"alt=""></i> 
                 <span class="nav_logo-name"><h5><b>simpan.com</b></h5></span> 
         </a>
         <div class="profile">
@@ -75,10 +79,6 @@
                         <i class='bx bxs-dashboard nav_icon'></i>
                         <span class="nav_name">Dashboard</span> 
                     </a> 
-                    <a href="../calculator" class="nav_link calculator"> 
-                    <i class="bx bx-calculator nav_icon"></i>
-                        <span class="nav_name">Tax Calculator</span>
-                    </a> 
                     <a href="../upload_receipt.php" class="nav_link upload_receipt"> 
                         <i class='bx bx-image-add nav_icon'></i> 
                         <span class="nav_name">Upload Receipt</span> 
@@ -91,13 +91,17 @@
                         <i class='bx bx-folder nav_icon'></i> 
                         <span class="nav_name">Folders</span> 
                     </a> 
+                    <a href="../calculator" class="nav_link calculator"> 
+                    <i class="bx bx-calculator nav_icon"></i>
+                        <span class="nav_name">Tax Calculator</span>
+                    </a> 
                     <!-- <a href="../folders.php" class="nav_link"> 
                         <i class='bx bx-bar-chart-alt-2 nav_icon'></i> 
                         <span class="nav_name">Stats</span> 
                     </a>  -->
                 </div>
             </div> 
-            <a  onclick="logout();" class="nav_link" class="btn"> 
+            <a  onclick="logout();" class="nav_link logout" class="btn" href="./php/logout.php"> 
                 <i class='bx bx-log-out nav_icon'></i> 
                 <span class="nav_name">SignOut</span>
              </a>
@@ -158,11 +162,11 @@
         });
 
         function logout() {
-	request('php/logout.php', false, function(data) {
-		if(data === '0') {
-			window.location = 'login';
-		}
-	});
+            request('./php/logout.php', false, function(data) {
+                if(data === '0') {
+                    window.location = 'login';
+                }
+        });
 }       
 
 // <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js">

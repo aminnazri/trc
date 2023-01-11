@@ -90,7 +90,7 @@ $result = $_GET['result'];
                         <!-- Text input -->
                         <div class="form-outline mb-3">
                             <input type="text" id="tittle" class="form-control" name="tittle" required />
-                            <label class="form-label" for="tittle">Tittle</label>
+                            <label class="form-label" for="tittle">Title</label>
                         </div>
                         <!-- parent_medical,education_fees,medical_expenses,lifestyle,lifestyle_addition,lifestyle_sport,lifestyle_travel,breast_feeding,childcare_fees,sspn,life_insurance,edu_med_ins,equipment_disable -->
                         <!-- Text input -->

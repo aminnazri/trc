@@ -143,10 +143,10 @@ require_once 'template/header.php';
 
                     <!-- <div class="child_details" id="has_child"> -->
                         <tr id = "c">
-                            <td colspan="5" class=""><h4>CHILD DETAILS</h4></td>
+                            <td colspan="5" class="" s><h4>CHILD DETAILS</h4></td>
 
                         </tr>
-                        <tr  id="cd">
+                        <tr  id="cd" style="display:none;">
                             <td><b>Child</b></td>
                             <td></td>
                             <td></th>

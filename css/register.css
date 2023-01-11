@@ -28,11 +28,12 @@ body {
 
 section .imgBx{
     position: relative;
-    width: 50%;
+    width: 40%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgb(247, 250, 255);
 }
 
 section .imgBx:before{
@@ -55,7 +56,7 @@ section .contentBx{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    width: 70%;
     height: 100%;
     /* background: red; */
 }
@@ -114,7 +115,7 @@ section .contentBx .formBx .inputBx input[type='submit']{
     border: none;
     font-weight: 500;
     cursor: pointer;
-    width: 100%;
+    /* width: 100%; */
 }
 
 section .contentBx .formBx .inputBx input[type='submit']:hover{
@@ -210,4 +211,23 @@ section .contentBx .formBx .inputBx p a{
 }
 .btn:active {
 	box-shadow: inset 0 0 4px 5px rgba(0,0,0,.1);
+}
+
+.button {
+    width: auto;
+    background: #39acfd;
+    coLor: #fff;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    width: 92%;
+    border-radius: 5px;
+    padding: 12px;
+    text-align: center;
+  }
+
+.button:hover{
+    transition: .2s;
+    box-shadow:  2px 2px 2px 2px rgba(0, 0, 0, 0.103);
 }

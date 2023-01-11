@@ -15,12 +15,13 @@
 <body>
     <section>
         <div class="imgBx">
-            <img src="image/folder3.png" alt="">
+            <img src="image/folder4.png" alt="">
         </div>
         <div class="contentBx">
             <div class="formBx">
                 <!-- <p>Hi</p> -->
                 <h2>Register</h2>
+                
                 <form action="" id="registerForm" method="post">
                     <div class="inputBx">
                         <div id="errs" class="errorcontainer"></div>
@@ -39,12 +40,13 @@
                         <span>Confirm Password</span>
                         <input type="password" id="confirm-password" name="confirm-password" required onkeydown="if(event.key === 'Enter'){event.preventDefault();register();}">
                     </div>
-                    <div class="remember">
+                    <!-- <div class="remember">
                         <label for=""><input type="checkbox" name="">Remember me</label>
-                    </div>
+                    </div> -->
                     <div class="inputBx">
-                        <input type="submit" value="SIGN UP" onclick="register();">
+                        <!-- <input type="submit" value="SIGN UP" onclick="register();"> -->
                         <!-- <div class="btn" onclick="login();">Log In</div> -->
+                        <div class="button"  onclick="register();">SIGN UP</div>
                     </div>
                     <div class="inputBx">
                         <p>Have an account? <a href="login">Login</a></p>

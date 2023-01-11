@@ -35,7 +35,7 @@ function get_sum($category, $year){
 
     global $user_id,$C;
 
-    $query = "SELECT * FROM images where category='$category' AND user_id='$user_id' AND YEAR = '$year'";
+    $query = "SELECT * FROM receipts where category='$category' AND user_id='$user_id' AND YEAR = '$year'";
     $sql1 = mysqli_query($C, $query);
     $result1 = mysqli_fetch_assoc($sql1);
     // $checker = ;
@@ -45,7 +45,7 @@ function get_sum($category, $year){
         return 0; 
     } else {
         $sql = "SELECT (SUM(amount)) AS total 
-        FROM images 
+        FROM receipts 
         WHERE category='$category' AND user_id='$user_id' AND YEAR ='$year'";
 
         $conn = $C->query($sql);

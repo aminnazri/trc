@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf_token" content="<?php echo createToken(); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"  href ='css/login.css'/>
+    <link rel="stylesheet"  href ='css/register.css'/>
     <title>Login</title>
 </head>
 <body>
@@ -31,11 +31,11 @@
                         <span>Password</span>
                         <input type="password" id="password" name="password" required onkeydown="if(event.key === 'Enter'){event.preventDefault();login();}">
                     </div>
-                    <div class="remember">
+                    <!-- <div class="remember">
                         <label for=""><input type="checkbox" name="">Remember me</label>
-                    </div>
+                    </div> -->
                     <div class="inputBx">
-                        <input type="submit" value="LOGIN" onclick="login();">
+                    <div class="button"  onclick="login();">LOGIN</div>
                         <!-- <div class="btn" onclick="login();">Log In</div> -->
                     </div>
                     <div class="inputBx">

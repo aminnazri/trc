@@ -77,7 +77,7 @@ if ($_GET['year'] != null) {
 
 
                 <div class="pdf_gen ">
-                    <form method="get" action="pdf_gen.php" >
+                    <form method="get" action="pdf.php" >
                         <input type="text" id="year"  name="year" style="display:none;" value="<?= $year?>">
                         <button type="submit" class="btn btn-primary">PDF</button>
 
@@ -319,7 +319,7 @@ console.log(color_list[1]);
         
 
             <div class="card" data-html="true " data-string="${valuesCard.title}" width="20px"rel="tooltip">
-                <a href = 'images.php?f=${valuesCard.link}&year=${valuesCard.year}' >
+                <a href = 'receipts.php?f=${valuesCard.link}&year=${valuesCard.year}' >
                     <div class="image text-center rounded m-2" style="background-color:#${valuesCard.bg_color};">
                         <svg style="width: 40%; height: auto;" class="card-image-top rounded m-4" ${valuesCard.image}"></svg>
                     </div>
@@ -387,7 +387,13 @@ console.log(color_list[1]);
             }
         })
     });
-
+    function logout() {
+	request('php/logout.php', false, function(data) {
+		if(data === '0') {
+			window.location = 'login';
+		}
+	});
+}
 
 </script>
 

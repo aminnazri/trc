@@ -7,27 +7,9 @@
    
     $C = connect();
     $statusMsg = '';
-    // if (isset($_POST['upload'])) {
-    //     // Get image name
-    //     $image = $_FILES['image']['name'];
-    //     // Get text
-    //     $image_text = mysqli_real_escape_string(`$db`, $_POST['image_text']);
-  
-    //     // image file directory
-    //     $targetDir = "image/profile_image".basename($image);
-  
-        // $sql = "UPDATE  USERS (picture_link) VALUES ('$image_text') WHERE id=$user_id";
-    //     // execute query
-    //     mysqli_query($C, $sql);
-  
-    //     if (move_uploaded_file($_FILES['image']['tmp_name'], $targetDir)) {
-    //         $msg = "Image uploaded successfully";
-    //     }else{
-    //         $msg = "Failed to upload image";
-    //     }
-    // } 
 
-
+//Extra JS FILES
+echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>";
     // File upload path
     
     $targetDir = "image/profile_image/";
@@ -63,10 +45,15 @@
                     // $query = "profile_image (id,picture_name) VALUES ('1','$fileName') ";
                     // $sql = sqlInsert($C, $query);
                     if($insert){
-                        header("Location: profile-setting");
-                        echo "<script> location.href='profile-setting2?result=success'; </script>";
-
-                        $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
+                        ?>
+                        <script type="text/javascript">
+                            swal("Profile Updated", "success").then((value) => 
+                            {
+                                window.location.replace("profile-setting2");
+                            });
+                        </script>
+            
+                <?php
                     }else{
                         $statusMsg = "File upload failed, please try again.";
                     } 
@@ -81,9 +68,17 @@
             $insert = $C->query("UPDATE users SET name='$first_name', last_name='$last_name'  where id='$user_id'");
             $insert2 = $C->query("UPDATE tax_calculator SET month_income='$monthly_salary', epf='$epf', socso='$socso',  pcb='$pcb',  zakat='$zakat', current_tax='$tax_amount'  where user_id='$user_id'");
             if($insert2){
-
-                echo "<script> location.href='profile-setting2?result=success'; </script>";
-                $statusMsg = "The file has been uploaded successfully.";
+                ?>
+                <script type="text/javascript">
+                        swal("Profile Updated", "success").then((value) => 
+                        {
+                            window.location.replace("profile-setting2");
+                        });
+                    </script>
+                
+                <?php
+                // echo "<script> location.href='profile-setting2?result=success'; </script>";
+                // $statusMsg = "The file has been uploaded successfully.";
             }else{
                 $statusMsg = "File upload failed, please try again.";
             }
@@ -185,10 +180,10 @@
                                 <label for="email">Email Address</label>
                                 <input type="text" class="bg-light form-control" placeholder="" value="<?= $row['email'];?>" readonly>
                             </div>
-                            <div class="col-md-6 pt-md-0 pt-3">
+                            <!-- <div class="col-md-6 pt-md-0 pt-3">
                                 <label for="phone">Phone Number</label>
                                 <input type="tel" class="bg-light form-control" placeholder="">
-                            </div>
+                            </div> -->
                         </div>
 
                         <!-- <div class="py-3 pb-4 border-bottom">
@@ -196,10 +191,7 @@
                             <button class="btn border button">Cancel</button>
                         </div> -->
                         <div class="d-sm-flex align-items-center pt-3" id="deactivate">
-                            <div>
-                                <b>Delete your account</b>
-                                <p></p>
-                            </div>
+                             
                             <div class="ml-auto">
                                 
                                 <button class="btn danger" onclick="deleteAccount();">Delete</button>
@@ -314,19 +306,24 @@
                 }
             })
             document.title = 'Profile Setting';
-            var url_string =location.href; 
-            var url = new URL(url_string);
-            var c = url.searchParams.get("result");
-            console.log(c);
-                    if (c == "success") {
-                        swal({
-                    title: "Profile Updated",
-                    // text: "This form will be submitted",
-                    icon: "success",
+            // var url_string =location.href; 
+            // var url = new URL(url_string);
+            // var c = url.searchParams.get("result");
+            // console.log(c);
+            //         if (c == "success") {
+            //             swal({
+            //         title: "Profile Updated",
+            //         // text: "This form will be submitted",
+            //         icon: "success",
 
 
-                })
-            }
+            //     })
+            // }        function logout() {
+            request('./php/logout.php', false, function(data) {
+                if(data === '0') {
+                    window.location = 'login';
+                }
+        });
 
 
         </script>

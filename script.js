@@ -79,7 +79,7 @@ function login() {
 				window.location = './';
 				break;
 			case '1':
-				document.getElementById('errs').innerHTML += '<div class="err">Incorrect email or password</div>';
+				document.getElementById('errs').innerHTML += '<div class="err">Incorrect email address or password</div>';
 				break;
 			case '2':
 				document.getElementById('errs').innerHTML += '<div class="err">Failed to connect to database. Please try again later.</div>';
@@ -89,6 +89,9 @@ function login() {
 				break;
 			case '4':
 				document.getElementById('errs').innerHTML += '<div class="err">Your email has not been validated. Please check your email for a validation link or <a href="./validate">click here</a> to send another link</div>';
+				break;
+			case '5':
+				document.getElementById('errs').innerHTML += '<div class="err">Please complete all the form</div>';
 				break;
 			default:
 				document.getElementById('errs').innerHTML += '<div class="err">An unknown error occurred. Please try again later.</div>';
@@ -117,8 +120,6 @@ function register() {
 					case 0:
 						document.getElementById('errs').innerHTML += '<div>Your account has been created!</div><div>Please validate your email by checking your inbox for a validation link before logging in.</div>';
 						document.getElementById('registerForm').reset();
-                        // window.location.href = "login.php";
-                        // alert("Your account has been created!\nplease validate your email by checking your inbox for a validation link before logging in.");
 						break;
 					case 1:
 						document.getElementById('errs').innerHTML += '<div class="err">Invalid name entered. (only use letters, spaces, and hyphens)</div>';
@@ -165,6 +166,9 @@ function register() {
 					case 15:
 						document.getElementById('errs').innerHTML += '<div class="err">Failed to connect to database. Please try again later.</div>';
 						break;
+					case 16:
+						document.getElementById('errs').innerHTML += '<div class="err">Please fill complete all the form.</div>';
+						break;
 					default:
 						document.getElementById('errs').innerHTML += '<div class="err">An unknown error occurred. Please try again later.</div>';
 				}
@@ -179,7 +183,6 @@ function register() {
 		}, 10);
 	});
 }
-
 
 // validateEmail.php
 function sendValidateEmailRequest() {
@@ -315,28 +318,4 @@ function changePassword() {
 			document.getElementById('errs').style.opacity = 1;
 		}, 10);
 	});
-}
-
-
-function upload_receipt(){
-	request('php/upload_receipt.php', '#upload_receipt', function(data) {
-		document.getElementById('errs').innerHTML = "";
-		var transition = document.getElementById('errs').style.transition;
-		document.getElementById('errs').style.transition = "none";
-		document.getElementById('errs').style.opacity = 0;
-		try {
-			data = JSON.parse(data);
-			if(!(data instanceof Array)) {throw Exception('bad data');}
-
-			
-		}
-		catch(e) {
-			document.getElementById('errs').innerHTML = '<div class="err">An unknown error occurred. Please try again later.</div>';
-		}
-		setTimeout(function() {
-			document.getElementById('errs').style.transition = transition;
-			document.getElementById('errs').style.opacity = 1;
-		}, 10);
-	});
-
 }

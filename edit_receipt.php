@@ -3,10 +3,11 @@ require_once 'template/header.php';
 require_once 'php/utils.php'; 
 $C = connect();
 $img_id = $_GET['id'];
-
+echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>";
 $sql = "SELECT * FROM images where image_id = '$img_id'";
 $result = mysqli_fetch_array(mysqli_query($C, $sql));
 $option = $result['category'];
+
 
 
 if(isset($_POST["submit"])){
@@ -19,14 +20,27 @@ if(isset($_POST["submit"])){
     $amount = $_POST['amount'];
 
     $insert = $C->query("UPDATE images SET tittle = '$tittle', category = '$tax_type',  receipt_date = '$receipt_date', YEAR = '$year', amount = '$amount',  description='$description'  where image_id='$img_id'");
-    header("Location: profile-setting");
-    echo "<script> location.href='edit_receipt?id=".$img_id."&result=success'; </script>";
+    // header("Location: profile-setting");
+    // echo "<script> location.href='edit_receipt?id=".$img_id."&result=success'; </script>";
     
     if ($insert) {
-        
-        // header("Location: edit_receipt?id=$img_id");
-    }
+    //     // header("Location: edit_receipt?id=$img_id");
+    // }
     // $sql = sqlInsert($C, $query);
+    ?>
+    <script type="text/javascript">
+
+            var url_string =location.href; 
+            var url = new URL(url_string);
+            var c = url.searchParams.get("id");
+            swal("Receipt details updated", "success").then((value) => 
+            {
+                window.location.replace("edit_receipt?id=<?= $img_id?>");
+            });
+        </script>
+    
+    <?php
+    }
   }
 ?>
 
@@ -115,7 +129,7 @@ if(isset($_POST["submit"])){
 
                         <div class="row py-2">
                             <div class="col-md-12">
-                                <label for="firstname">Tittle</label>
+                                <label for="firstname">Title</label>
                                 
                                 <input type="text"  class="bg-light form-control" placeholder=""  id="tittle" name="tittle" value="<?= $result['tittle'];?>">
                                 

@@ -51,12 +51,14 @@ if(isset($_POST['submit']))
                 move_uploaded_file($fileTmpName, $fileDestination);
                 
                 // Insert image file name into database
-                $query = "INSERT into images (tittle,category,description,file_name, receipt_date, YEAR,uploaded_on,user_id,amount) VALUES ('$tittle','$tax_type','$description','$fileNameNew', '$receipt_date', '$year', NOW(), '$user_id','$amount')";
+                $query = "INSERT into receipts (tittle,category,description,file_name, receipt_date, YEAR,uploaded_on,user_id,amount) VALUES ('$tittle','$tax_type','$description','$fileNameNew', '$receipt_date', '$year', NOW(), '$user_id','$amount')";
                 $sql = sqlInsert($C, $query);
                 if($sql){
                     $statusMsg  = "The file ".$fileName. " has been uploaded successfully.";
-                    echo '<script type="text/javascript">  { alert("File uploaded"); } </script>';
-                    header('Location: ../upload_receipt.php?result=success');
+                    // echo '<script type="text/javascript">  { alert("File uploaded"); } </script>';
+                    // header('Location: ../upload_receipt.php?result=success');
+                    echo "<script> location.href='../upload_receipt?result=success'; </script>";
+
                 }else{
                     $statusMsg = "File upload failed, please try again.";
                 } 

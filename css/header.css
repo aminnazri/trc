@@ -62,7 +62,7 @@ a{
     background-color: var(--first-color);
     z-index: var(--z-fixed);
     transition: .5s;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     
 }
 
